@@ -6,12 +6,14 @@ using System.IO.Compression;
 using System.Net;
 using System.Diagnostics;
 using Ionic.Zip;
+using System.Collections.Generic;
 
 enum OS_T {
 	Win,
 	Unix,
 	OSX
 }
+
 
 public class Repositories
 {
@@ -23,17 +25,28 @@ namespace code_visualizer.Controllers
 {
 	public class InitController : ApiController
 	{
+		public IHttpActionResult GetInit()
+		{
+			return Ok();
+		}
+
+
 		[System.Web.Http.HttpPost]
 		public IHttpActionResult PostInit([FromBody] Repositories repo)
 		{
 			var os = DetectOS();
 			try {
+				List<String> paths = new List<string>();
+
 				foreach (var url in repo.Repository)
 				{
 					var path = DownloadRepository(url);
+					var splitPath = path.Split(Path.DirectorySeparatorChar);
+					paths.Add(splitPath[splitPath.Length - 1]);
 					ParseSources(path, os);
 				}				
-				return Ok();
+
+				return Ok(paths);
 			} catch (Exception e) {
 				Console.WriteLine("{0} exception caught.", e);
 				return StatusCode(HttpStatusCode.InternalServerError);
@@ -60,19 +73,20 @@ namespace code_visualizer.Controllers
 		    }
 		}
 
+
 		private void ParseSources(string path, OS_T ostype)
 		{
 			ProcessStartInfo processInfo = new ProcessStartInfo();
 			switch (ostype)
 			{
-				case OS_T.OSX:
-					processInfo.FileName = AppDomain.CurrentDomain.BaseDirectory + "libs/osxsrcml";
-					break;
 				case OS_T.Unix:
-					processInfo.FileName = AppDomain.CurrentDomain.BaseDirectory + "libs/unixsrcml";
+					processInfo.FileName = AppDomain.CurrentDomain.BaseDirectory + "libs" + Path.DirectorySeparatorChar + "osxsrcml";
+					break;
+				case OS_T.OSX:
+					processInfo.FileName = AppDomain.CurrentDomain.BaseDirectory + "libs" + Path.DirectorySeparatorChar + "unixsrcml";
 					break;
 				case OS_T.Win:
-					processInfo.FileName = AppDomain.CurrentDomain.BaseDirectory + "libs/winsrcml.exe";
+					processInfo.FileName = AppDomain.CurrentDomain.BaseDirectory + "libs" + Path.DirectorySeparatorChar + "winsrcml.exe";
 					break;
 				default:
 					break;
@@ -86,26 +100,29 @@ namespace code_visualizer.Controllers
 			throw new SrcMlException();
 		}
 
+
 		private string DownloadRepository(String url)
 		{
 			var zipUrl = url + "/archive/master.zip";
 			var splitUrl = url.Split('/');
-			var zipPath = Path.GetTempPath() + splitUrl[splitUrl.Length-1] + ".zip";
-			var filePath = Path.GetTempPath() + splitUrl[splitUrl.Length-1];
+			var folderPath = Path.GetTempPath() + "codeVisualizer" + Path.DirectorySeparatorChar;
+			var zipPath = folderPath + splitUrl[splitUrl.Length-1] + ".zip";
+			var extractPath = folderPath + splitUrl[splitUrl.Length-1];
 
 			WebClient Client = new WebClient();
+			Directory.CreateDirectory(folderPath);
 			Client.DownloadFile(zipUrl, zipPath);
 
 			using (ZipFile zip = ZipFile.Read(zipPath))
 			{
 				foreach (ZipEntry e in zip)
 				{
-					e.Extract(filePath, ExtractExistingFileAction.OverwriteSilently);
+					e.Extract(extractPath, ExtractExistingFileAction.OverwriteSilently);
 				}
 			}
 			File.Delete(zipPath);
 
-			return filePath;
+			return extractPath;
 		}
 	}
 }

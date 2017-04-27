@@ -1,0 +1,11 @@
+language: node_js
+
+before_script:
+  - npm i -g bower
+  - bower i
+  - npm run update-webdriver
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
