@@ -1,5 +1,13 @@
 ﻿using System.Web.Http;
 
+struct OS_T
+{
+	Windows,
+	Unix;
+	OSX;
+}
+
+
 namespace code_visualizer
 {
 	public static class WebApiConfig
