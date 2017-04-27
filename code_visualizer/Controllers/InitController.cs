@@ -35,7 +35,7 @@ namespace code_visualizer.Controllers
 				}				
 				return Ok();
 			} catch (Exception e) {
-				Console.WriteLine("{0} Second exception caught.", e);
+				Console.WriteLine("{0} exception caught.", e);
 				return StatusCode(HttpStatusCode.InternalServerError);
 			}
 		}
@@ -46,24 +46,37 @@ namespace code_visualizer.Controllers
 			PlatformID pid = os.Platform;
 			switch (pid) 
 		    {
-		    case PlatformID.Win32NT:
-		    case PlatformID.Win32S:
-		    case PlatformID.Win32Windows:
-		    case PlatformID.WinCE:
-				return OS_T.Win;
-		    case PlatformID.Unix:
-				return OS_T.Unix;
-			case PlatformID.MacOSX:
-				return OS_T.OSX;
-		    default:
-				throw new OSDetectionException();
+			    case PlatformID.Win32NT:
+			    case PlatformID.Win32S:
+			    case PlatformID.Win32Windows:
+			    case PlatformID.WinCE:
+					return OS_T.Win;
+				case PlatformID.MacOSX:
+					return OS_T.OSX;
+			    case PlatformID.Unix:
+					return OS_T.Unix;
+			    default:
+					throw new OSDetectionException();
 		    }
 		}
 
 		private void ParseSources(string path, OS_T ostype)
 		{
 			ProcessStartInfo processInfo = new ProcessStartInfo();
-			processInfo.FileName = AppDomain.CurrentDomain.BaseDirectory + "libs/osxsrcml";
+			switch (ostype)
+			{
+				case OS_T.OSX:
+					processInfo.FileName = AppDomain.CurrentDomain.BaseDirectory + "libs/osxsrcml";
+					break;
+				case OS_T.Unix:
+					processInfo.FileName = AppDomain.CurrentDomain.BaseDirectory + "libs/unixsrcml";
+					break;
+				case OS_T.Win:
+					processInfo.FileName = AppDomain.CurrentDomain.BaseDirectory + "libs/winsrcml.exe";
+					break;
+				default:
+					break;
+			}
 			processInfo.Arguments = " " + path + " -o " + path + ".xml";
 			Process proc = Process.Start(processInfo);
 			proc.WaitForExit();

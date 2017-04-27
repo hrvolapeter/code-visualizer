@@ -74,6 +74,28 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="libs\osxsrcml" />
+    <None Include="libs\archive_old.dll" />
+    <None Include="libs\archive.dll" />
+    <None Include="libs\curllib.dll" />
+    <None Include="libs\iconv.dll" />
+    <None Include="libs\libeay32.dll" />
+    <None Include="libs\libexslt.dll" />
+    <None Include="libs\libiconv2.dll" />
+    <None Include="libs\libidn-11.dll" />
+    <None Include="libs\libintl3.dll" />
+    <None Include="libs\librtmp.dll" />
+    <None Include="libs\libsrcml.dll" />
+    <None Include="libs\libssh2.dll" />
+    <None Include="libs\libxml2.dll" />
+    <None Include="libs\libxslt.dll" />
+    <None Include="libs\pcre3.dll" />
+    <None Include="libs\pcreposix3.dll" />
+    <None Include="libs\regex2.dll" />
+    <None Include="libs\wimsrcml.exe" />
+    <None Include="libs\ssleay32.dll" />
+    <None Include="libs\vcredist_x86.exe" />
+    <None Include="libs\zlib1.dll" />
+    <None Include="libs\unixsrcml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
