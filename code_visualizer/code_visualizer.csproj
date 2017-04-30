@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\LibGit2Sharp.NativeBinaries.1.0.164\build\LibGit2Sharp.NativeBinaries.props" Condition="Exists('..\packages\LibGit2Sharp.NativeBinaries.1.0.164\build\LibGit2Sharp.NativeBinaries.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -52,6 +53,15 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Cors">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.3\lib\net45\System.Web.Http.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="LibGit2Sharp">
+      <HintPath>..\packages\LibGit2Sharp.0.23.1\lib\net40\LibGit2Sharp.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web.config" />
@@ -63,6 +73,40 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\InitController.cs" />
+    <Compile Include="Controllers\AnalyseController.cs" />
+    <Compile Include="Controllers\GitController.cs" />
+    <Compile Include="Controllers\SrcmlController.cs" />
+    <Compile Include="Controllers\XmlController.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+    <Folder Include="libs\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="libs\osxsrcml" />
+    <None Include="libs\archive_old.dll" />
+    <None Include="libs\archive.dll" />
+    <None Include="libs\curllib.dll" />
+    <None Include="libs\iconv.dll" />
+    <None Include="libs\libeay32.dll" />
+    <None Include="libs\libexslt.dll" />
+    <None Include="libs\libiconv2.dll" />
+    <None Include="libs\libidn-11.dll" />
+    <None Include="libs\libintl3.dll" />
+    <None Include="libs\librtmp.dll" />
+    <None Include="libs\libsrcml.dll" />
+    <None Include="libs\libssh2.dll" />
+    <None Include="libs\libxml2.dll" />
+    <None Include="libs\libxslt.dll" />
+    <None Include="libs\pcre3.dll" />
+    <None Include="libs\pcreposix3.dll" />
+    <None Include="libs\regex2.dll" />
+    <None Include="libs\wimsrcml.exe" />
+    <None Include="libs\ssleay32.dll" />
+    <None Include="libs\vcredist_x86.exe" />
+    <None Include="libs\zlib1.dll" />
+    <None Include="libs\unixsrcml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
