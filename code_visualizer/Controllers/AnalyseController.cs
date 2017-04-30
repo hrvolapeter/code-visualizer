@@ -19,7 +19,7 @@ namespace code_visualizer.Controllers
             {
                 var srcmlPath = SrcmlController.ParseSources(path);
                 countTodo.Add(XmlController.CountTodo(srcmlPath));
-                GitController.TimeTravelCommits(path, 10);
+                GitController.TimeTravelCommits(path, 1);
             }
             return countTodo.ToArray();
         }
