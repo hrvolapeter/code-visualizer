@@ -19,5 +19,12 @@ namespace code_visualizer
             }
             return count;
         }
+
+        public static void AnalyzeXml(string xmlPath)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(xmlPath);
+            //TODO
+        }
     }
 }
