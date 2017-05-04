@@ -14,5 +14,18 @@ namespace code_visualizer
 		{
 			GlobalConfiguration.Configure(WebApiConfig.Register);
 		}
+
+		protected void Application_BeginRequest(Object sender, EventArgs e)
+		{
+            if (!Request.Path.Contains("api"))
+            {
+                if (!Request.Path.Contains("js") && !Request.Path.Contains("css") && !Request.Path.Contains("html"))
+                {
+                    Context.RewritePath("/angular/app/index.html" + Request.Path.Substring(1));
+                    return;
+                }
+                Context.RewritePath("/angular/app" + Request.Path);
+			}
+		}
 	}
 }
