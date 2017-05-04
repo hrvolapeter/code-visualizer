@@ -14,6 +14,7 @@ namespace code_visualizer
                 return folderPath;
             }
             clearFolder(folderPath);
+
             LibGit2Sharp.Repository.Clone(repoUrl, folderPath);
             return folderPath;
         }
