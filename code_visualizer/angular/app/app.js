@@ -3,12 +3,27 @@
 // Declare app level module which depends on views, and components
 angular.module('myApp', [
   'ngRoute',
+  'myApp.initView',
   'myApp.view1',
   'myApp.view2',
   'myApp.version'
-]).
-config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
+])
+.controller('mainCtrl', ['$scope','$route', '$routeParams', '$location',
+  function mainCtrl($scope,$route, $routeParams, $location) {
+    $scope.$route = $route;
+    $scope.$location = $location;
+    $scope.$routeParams = $routeParams;
+
+    $scope.$on('$routeChangeStart', function(event, next, current){
+    if($location.path() == '/initView') {
+      $scope.menuVisible = false;
+    } else {
+      $scope.menuVisible = true;
+    };
+  });
+}])
+.config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
 
-  $routeProvider.otherwise({redirectTo: '/view1'});
+  $routeProvider.otherwise({redirectTo: '/initView'});
 }]);
