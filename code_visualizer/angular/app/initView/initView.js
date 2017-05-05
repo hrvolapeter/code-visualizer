@@ -9,6 +9,6 @@ angular.module('myApp.initView', ['ngRoute', 'xml'])
   });
 }])
 
-.controller('initViewCtrl', [function($scope) {
+.controller('initViewCtrl', ['$scope',function($scope) {
     $scope.menuVisible = false;
 }]);
