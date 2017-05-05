@@ -4,7 +4,7 @@
 angular.module('myApp', [
   'ngRoute',
   'myApp.initView',
-  'myApp.view1',
+  'myApp.todoView',
   'myApp.view2',
   'myApp.version'
 ])

@@ -1,15 +1,15 @@
 'use strict';
 
-angular.module('myApp.view1', ['ngRoute', 'xml'])
+angular.module('myApp.todoView', ['ngRoute', 'xml'])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/view1', {
-    templateUrl: 'view1/view1.html',
-    controller: 'View1Ctrl'
+  $routeProvider.when('/todoView', {
+    templateUrl: 'todoView/todoView.html',
+    controller: 'todoViewCtrl'
   });
 }])
 
-.controller('View1Ctrl', ['x2js', '$scope', '$http', function(x2js, $scope, $http) {
+.controller('todoViewCtrl', ['x2js', '$scope', '$http', function(x2js, $scope, $http) {
     $scope.input = "";
 
     $scope.initRepositories = function() {
