@@ -1,5 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
   <Import Project="..\packages\LibGit2Sharp.NativeBinaries.1.0.164\build\LibGit2Sharp.NativeBinaries.props" Condition="Exists('..\packages\LibGit2Sharp.NativeBinaries.1.0.164\build\LibGit2Sharp.NativeBinaries.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -9,7 +15,18 @@
     <OutputType>Library</OutputType>
     <RootNamespace>code_visualizer</RootNamespace>
     <AssemblyName>code_visualizer</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -28,16 +45,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
-    <Reference Include="System.Core" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Web.Routing" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Net.Http.Formatting">
@@ -62,6 +80,7 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web.config" />
@@ -77,28 +96,9 @@
     <Content Include="angular\app\components\version\version-directive_test.js" />
     <Content Include="angular\app\components\version\version.js" />
     <Content Include="angular\app\components\version\version_test.js" />
-    <Content Include="angular\app\view1\view1.html" />
-    <Content Include="angular\app\view1\view1.js" />
-    <Content Include="angular\app\view1\view1_test.js" />
     <Content Include="angular\app\view2\view2.html" />
     <Content Include="angular\app\view2\view2.js" />
     <Content Include="angular\app\view2\view2_test.js" />
-    <Content Include="angular\node_modules\bower\lib\bin\bower.js" />
-    <Content Include="angular\node_modules\bower\lib\node_modules\cardinal\bin\cdl.js" />
-    <Content Include="angular\node_modules\bower\lib\node_modules\esprima\bin\esparse.js" />
-    <Content Include="angular\node_modules\bower\lib\node_modules\esprima\bin\esvalidate.js" />
-    <Content Include="angular\node_modules\bower\lib\node_modules\mkdirp\bin\cmd.js" />
-    <Content Include="angular\node_modules\bower\lib\node_modules\nopt\bin\nopt.js" />
-    <Content Include="angular\node_modules\bower\lib\node_modules\touch\bin\touch.js" />
-    <Content Include="angular\node_modules\bower\lib\node_modules\touch\node_modules\nopt\bin\nopt.js" />
-    <Content Include="angular\node_modules\bower\lib\node_modules\uglify-js\bin\extract-props.js" />
-    <Content Include="angular\node_modules\fsevents\node_modules\mkdirp\bin\cmd.js" />
-    <Content Include="angular\node_modules\fsevents\node_modules\nopt\bin\nopt.js" />
-    <Content Include="angular\node_modules\jasmine\bin\jasmine.js" />
-    <Content Include="angular\node_modules\mkdirp\bin\cmd.js" />
-    <Content Include="angular\node_modules\protractor\bin\elementexplorer.js" />
-    <Content Include="angular\node_modules\useragent\bin\testfiles.js" />
-    <Content Include="angular\node_modules\useragent\bin\update.js" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Global.asax.cs">
@@ -110,11 +110,10 @@
     <Compile Include="Controllers\SrcmlController.cs" />
     <Compile Include="Controllers\XmlController.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="libs\" />
-  </ItemGroup>
-  <ItemGroup>
+    <None Include="FolderProfile.pubxml" />
+    <None Include="FolderProfile1.pubxml" />
     <None Include="libs\osxsrcml" />
     <None Include="libs\archive_old.dll" />
     <None Include="libs\archive.dll" />
@@ -145,48 +144,6 @@
     <None Include="angular\README.md" />
     <None Include="angular\bower.json" />
     <None Include="angular\package.json" />
-    <None Include="angular\node_modules\agent-base\node_modules\semver\bin\semver" />
-    <None Include="angular\node_modules\bower\bin\bower" />
-    <None Include="angular\node_modules\bower\lib\node_modules\decompress-zip\bin\decompress-zip" />
-    <None Include="angular\node_modules\bower\lib\node_modules\handlebars\bin\handlebars" />
-    <None Include="angular\node_modules\bower\lib\node_modules\har-validator\bin\har-validator" />
-    <None Include="angular\node_modules\bower\lib\node_modules\mkdirp\bin\usage.txt" />
-    <None Include="angular\node_modules\bower\lib\node_modules\nested-error-stacks\README.md~" />
-    <None Include="angular\node_modules\bower\lib\node_modules\node-uuid\bin\uuid" />
-    <None Include="angular\node_modules\bower\lib\node_modules\normalize-package-data\test\normalize.js~" />
-    <None Include="angular\node_modules\bower\lib\node_modules\package-json\node_modules\semver\bin\semver" />
-    <None Include="angular\node_modules\bower\lib\node_modules\semver\bin\semver" />
-    <None Include="angular\node_modules\bower\lib\node_modules\semver-diff\node_modules\semver\bin\semver" />
-    <None Include="angular\node_modules\bower\lib\node_modules\sshpk\bin\sshpk-conv" />
-    <None Include="angular\node_modules\bower\lib\node_modules\sshpk\bin\sshpk-sign" />
-    <None Include="angular\node_modules\bower\lib\node_modules\sshpk\bin\sshpk-verify" />
-    <None Include="angular\node_modules\bower\lib\node_modules\uglify-js\bin\uglifyjs" />
-    <None Include="angular\node_modules\bower\lib\node_modules\which\bin\which" />
-    <None Include="angular\node_modules\fsevents\node_modules\console-control-strings\README.md~" />
-    <None Include="angular\node_modules\fsevents\node_modules\har-validator\bin\har-validator" />
-    <None Include="angular\node_modules\fsevents\node_modules\mkdirp\bin\usage.txt" />
-    <None Include="angular\node_modules\fsevents\node_modules\node-pre-gyp\bin\node-pre-gyp" />
-    <None Include="angular\node_modules\fsevents\node_modules\node-pre-gyp\bin\node-pre-gyp.cmd" />
-    <None Include="angular\node_modules\fsevents\node_modules\semver\bin\semver" />
-    <None Include="angular\node_modules\fsevents\node_modules\sshpk\bin\sshpk-conv" />
-    <None Include="angular\node_modules\fsevents\node_modules\sshpk\bin\sshpk-sign" />
-    <None Include="angular\node_modules\fsevents\node_modules\sshpk\bin\sshpk-verify" />
-    <None Include="angular\node_modules\fsevents\node_modules\tar-pack\test\fixtures\packed.tar.gz" />
-    <None Include="angular\node_modules\fsevents\node_modules\uuid\bin\uuid" />
-    <None Include="angular\node_modules\he\bin\he" />
-    <None Include="angular\node_modules\http-server\bin\http-server" />
-    <None Include="angular\node_modules\karma\bin\karma" />
-    <None Include="angular\node_modules\mkdirp\bin\usage.txt" />
-    <None Include="angular\node_modules\protractor\bin\protractor" />
-    <None Include="angular\node_modules\protractor\bin\webdriver-manager" />
-    <None Include="angular\node_modules\protractor\node_modules\semver\bin\semver" />
-    <None Include="angular\node_modules\protractor\node_modules\webdriver-manager\bin\webdriver-manager" />
-    <None Include="angular\node_modules\semver\bin\semver" />
-    <None Include="angular\node_modules\sshpk\bin\sshpk-conv" />
-    <None Include="angular\node_modules\sshpk\bin\sshpk-sign" />
-    <None Include="angular\node_modules\sshpk\bin\sshpk-verify" />
-    <None Include="angular\node_modules\uuid\bin\uuid" />
-    <None Include="angular\node_modules\which\bin\which" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
@@ -195,5 +152,23 @@
         <XspParameters Port="8080" Address="127.0.0.1" SslMode="None" SslProtocol="Default" KeyType="None" CertFile="" KeyFile="" PasswordOptions="None" Password="" Verbose="True" />
       </Properties>
     </MonoDevelop>
+    <VisualStudio>
+      <FlavorProperties GUID="{349C5851-65DF-11DA-9384-00065B846F21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:56019/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
   </ProjectExtensions>
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v11.0\WebApplications\Microsoft.WebApplication.targets" Condition="true" />
 </Project>
