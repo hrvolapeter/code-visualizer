@@ -1,7 +1,9 @@
----
-# You don't need to edit this file, it's empty on purpose.
-# Edit theme's home layout instead if you wanna make some changes
-# See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
-layout: home
----
-# Hello World
+# Documentation
+This is documentation of public accesible api
+
+## API endpoints
+
+- *GET* api/analyse/todos?repoUrl={url}
+  result: link na XML
+- *GET* api/analyse/arguments?repoUrl={url}
+  result: link na XML
