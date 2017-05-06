@@ -44,7 +44,7 @@ namespace code_visualizer
         {
             var repo = new LibGit2Sharp.Repository(repositoryPath);
             var enu = repo.Commits.GetEnumerator();
-            for (var i = 0; i < 10; i++)
+            for (var i = 0; i < difference; i++)
             {
                 enu.MoveNext();
             }
