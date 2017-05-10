@@ -96,28 +96,9 @@
     <Content Include="angular\app\components\version\version-directive_test.js" />
     <Content Include="angular\app\components\version\version.js" />
     <Content Include="angular\app\components\version\version_test.js" />
-    <Content Include="angular\app\view1\view1.html" />
-    <Content Include="angular\app\view1\view1.js" />
-    <Content Include="angular\app\view1\view1_test.js" />
     <Content Include="angular\app\view2\view2.html" />
     <Content Include="angular\app\view2\view2.js" />
     <Content Include="angular\app\view2\view2_test.js" />
-    <Content Include="angular\node_modules\bower\lib\bin\bower.js" />
-    <Content Include="angular\node_modules\bower\lib\node_modules\cardinal\bin\cdl.js" />
-    <Content Include="angular\node_modules\bower\lib\node_modules\esprima\bin\esparse.js" />
-    <Content Include="angular\node_modules\bower\lib\node_modules\esprima\bin\esvalidate.js" />
-    <Content Include="angular\node_modules\bower\lib\node_modules\mkdirp\bin\cmd.js" />
-    <Content Include="angular\node_modules\bower\lib\node_modules\nopt\bin\nopt.js" />
-    <Content Include="angular\node_modules\bower\lib\node_modules\touch\bin\touch.js" />
-    <Content Include="angular\node_modules\bower\lib\node_modules\touch\node_modules\nopt\bin\nopt.js" />
-    <Content Include="angular\node_modules\bower\lib\node_modules\uglify-js\bin\extract-props.js" />
-    <Content Include="angular\node_modules\fsevents\node_modules\mkdirp\bin\cmd.js" />
-    <Content Include="angular\node_modules\fsevents\node_modules\nopt\bin\nopt.js" />
-    <Content Include="angular\node_modules\jasmine\bin\jasmine.js" />
-    <Content Include="angular\node_modules\mkdirp\bin\cmd.js" />
-    <Content Include="angular\node_modules\protractor\bin\elementexplorer.js" />
-    <Content Include="angular\node_modules\useragent\bin\testfiles.js" />
-    <Content Include="angular\node_modules\useragent\bin\update.js" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Global.asax.cs">
@@ -131,6 +112,8 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="FolderProfile.pubxml" />
+    <None Include="FolderProfile1.pubxml" />
     <None Include="libs\osxsrcml" />
     <None Include="libs\archive_old.dll" />
     <None Include="libs\archive.dll" />
@@ -161,48 +144,6 @@
     <None Include="angular\README.md" />
     <None Include="angular\bower.json" />
     <None Include="angular\package.json" />
-    <None Include="angular\node_modules\agent-base\node_modules\semver\bin\semver" />
-    <None Include="angular\node_modules\bower\bin\bower" />
-    <None Include="angular\node_modules\bower\lib\node_modules\decompress-zip\bin\decompress-zip" />
-    <None Include="angular\node_modules\bower\lib\node_modules\handlebars\bin\handlebars" />
-    <None Include="angular\node_modules\bower\lib\node_modules\har-validator\bin\har-validator" />
-    <None Include="angular\node_modules\bower\lib\node_modules\mkdirp\bin\usage.txt" />
-    <None Include="angular\node_modules\bower\lib\node_modules\nested-error-stacks\README.md~" />
-    <None Include="angular\node_modules\bower\lib\node_modules\node-uuid\bin\uuid" />
-    <None Include="angular\node_modules\bower\lib\node_modules\normalize-package-data\test\normalize.js~" />
-    <None Include="angular\node_modules\bower\lib\node_modules\package-json\node_modules\semver\bin\semver" />
-    <None Include="angular\node_modules\bower\lib\node_modules\semver\bin\semver" />
-    <None Include="angular\node_modules\bower\lib\node_modules\semver-diff\node_modules\semver\bin\semver" />
-    <None Include="angular\node_modules\bower\lib\node_modules\sshpk\bin\sshpk-conv" />
-    <None Include="angular\node_modules\bower\lib\node_modules\sshpk\bin\sshpk-sign" />
-    <None Include="angular\node_modules\bower\lib\node_modules\sshpk\bin\sshpk-verify" />
-    <None Include="angular\node_modules\bower\lib\node_modules\uglify-js\bin\uglifyjs" />
-    <None Include="angular\node_modules\bower\lib\node_modules\which\bin\which" />
-    <None Include="angular\node_modules\fsevents\node_modules\console-control-strings\README.md~" />
-    <None Include="angular\node_modules\fsevents\node_modules\har-validator\bin\har-validator" />
-    <None Include="angular\node_modules\fsevents\node_modules\mkdirp\bin\usage.txt" />
-    <None Include="angular\node_modules\fsevents\node_modules\node-pre-gyp\bin\node-pre-gyp" />
-    <None Include="angular\node_modules\fsevents\node_modules\node-pre-gyp\bin\node-pre-gyp.cmd" />
-    <None Include="angular\node_modules\fsevents\node_modules\semver\bin\semver" />
-    <None Include="angular\node_modules\fsevents\node_modules\sshpk\bin\sshpk-conv" />
-    <None Include="angular\node_modules\fsevents\node_modules\sshpk\bin\sshpk-sign" />
-    <None Include="angular\node_modules\fsevents\node_modules\sshpk\bin\sshpk-verify" />
-    <None Include="angular\node_modules\fsevents\node_modules\tar-pack\test\fixtures\packed.tar.gz" />
-    <None Include="angular\node_modules\fsevents\node_modules\uuid\bin\uuid" />
-    <None Include="angular\node_modules\he\bin\he" />
-    <None Include="angular\node_modules\http-server\bin\http-server" />
-    <None Include="angular\node_modules\karma\bin\karma" />
-    <None Include="angular\node_modules\mkdirp\bin\usage.txt" />
-    <None Include="angular\node_modules\protractor\bin\protractor" />
-    <None Include="angular\node_modules\protractor\bin\webdriver-manager" />
-    <None Include="angular\node_modules\protractor\node_modules\semver\bin\semver" />
-    <None Include="angular\node_modules\protractor\node_modules\webdriver-manager\bin\webdriver-manager" />
-    <None Include="angular\node_modules\semver\bin\semver" />
-    <None Include="angular\node_modules\sshpk\bin\sshpk-conv" />
-    <None Include="angular\node_modules\sshpk\bin\sshpk-sign" />
-    <None Include="angular\node_modules\sshpk\bin\sshpk-verify" />
-    <None Include="angular\node_modules\uuid\bin\uuid" />
-    <None Include="angular\node_modules\which\bin\which" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
