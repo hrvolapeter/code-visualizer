@@ -40,8 +40,11 @@ angular.module('myApp.todoView', ['ngRoute', 'xml'])
     };
     console.log("new");
     console.log(req);
-    $http(req).success(function (response) {
+    $http(req).then(function succ(response) {
         alert(response);
+        console.log(response);
+    }, function err(response) {
+        console.log(response);
     });
     console.log("function ended");
   }
