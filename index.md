@@ -1,3 +1,18 @@
+# Funcionality
+
+- multiplatform
+- provide simple REST API
+  - analyse/codeDebt  
+   count TODOs in application, travelling 10 times 10 commits back on master
+  - analyse/rowCount  
+   count rows in apllication
+  - analyse/funcCount  
+   count number of functions
+  - analyse/imports  
+   count imports
+  - analyse/params  
+   count number of arguments and thier type
+
 # Documentation
 This is documentation of public accesible api
 
