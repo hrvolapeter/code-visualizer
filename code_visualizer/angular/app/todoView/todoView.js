@@ -55,8 +55,4 @@ angular.module('myApp.todoView', ['ngRoute', 'xml'])
             }
         };
     };
-
-    
-
-
 }]);
