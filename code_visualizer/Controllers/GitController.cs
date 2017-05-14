@@ -7,19 +7,27 @@ namespace code_visualizer
     {
         public static string InitRepository(string repoUrl)
         {
-            var splitUrl = repoUrl.Split('/');
-            var folderPath = Path.GetTempPath() + "codeVisualizer" + Path.DirectorySeparatorChar + splitUrl[splitUrl.Length - 1];
+            var folderPath = GetFolderPath(repoUrl);
             if (Directory.Exists(folderPath) && LibGit2Sharp.Repository.IsValid(folderPath))
             {
+                Reset(repoUrl);
                 return folderPath;
             }
-            clearFolder(folderPath);
+            ClearFolder(folderPath);
 
             LibGit2Sharp.Repository.Clone(repoUrl, folderPath);
             return folderPath;
         }
 
-        private static void clearFolder(string FolderName)
+        private static void Reset(string repoUrl)
+        {
+            var path = GetFolderPath(repoUrl);
+            var repo = new LibGit2Sharp.Repository(path);
+            LibGit2Sharp.Commands.Checkout(repo, "master");
+
+		}
+
+        private static void ClearFolder(string FolderName)
 		{
             if (!Directory.Exists(FolderName))
             {
@@ -35,7 +43,7 @@ namespace code_visualizer
 
 			foreach (DirectoryInfo di in dir.GetDirectories())
 			{
-				clearFolder(di.FullName);
+				ClearFolder(di.FullName);
 				di.Delete();
 			}
 		}
@@ -50,6 +58,12 @@ namespace code_visualizer
                 enu.MoveNext();
             }
         }
+
+        private static string GetFolderPath(string repoUrl)
+        {
+			var splitUrl = repoUrl.Split('/');
+			return Path.GetTempPath() + "codeVisualizer" + Path.DirectorySeparatorChar + splitUrl[splitUrl.Length - 1];
+		}
 
     }
 }
