@@ -2,12 +2,27 @@
 
 // Declare app level module which depends on views, and components
 angular.module('myApp', [
+  'chart.js',
   'ngRoute',
   'myApp.initView',
   'myApp.todoView',
+  'myApp.rowCountView',
+  'myApp.funcCountView',
   'myApp.view2',
   'myApp.version'
 ])
+.service('sharedProperties', function () {
+        var url = '';
+
+        return {
+            getUrl: function () {
+                return url;
+            },
+            setUrl: function(value) {
+                url = value;
+            }
+        };
+    })
 .controller('mainCtrl', ['$scope','$route', '$routeParams', '$location',
   function mainCtrl($scope,$route, $routeParams, $location) {
     $scope.$route = $route;

@@ -17,7 +17,9 @@
 <body>
   <div ng-controller="mainCtrl">
     <ul class="menu" ng-show="menuVisible">
-      <li><a href="#!/todoView">todoView</a></li>
+      <li><a href="#!/todoView">TODOs</a></li>
+      <li><a href="#!/rowCountView">Row Count</a></li>
+      <li><a href="#!/funcCountView">Function Count</a></li>
       <li><a href="#!/view2">view2</a></li>     
     </ul>
     
@@ -37,10 +39,14 @@
   <script src="bower_components/angular-xml/angular-xml.js"></script>
   <script src="app.js"></script>
   <script src="todoView/todoView.js"></script>
+  <script src="rowCountView/rowCountView.js"></script>
+  <script src="funcCountView/funcCountView.js"></script>
   <script src="view2/view2.js"></script>
   <script src="initView/initView.js"></script>
   <script src="components/version/version.js"></script>
   <script src="components/version/version-directive.js"></script>
   <script src="components/version/interpolate-filter.js"></script>
+  <script src="bower_components/chart.js/dist/Chart.min.js"></script>
+  <script src="bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
 </body>
 </html>
