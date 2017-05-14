@@ -10,11 +10,12 @@ angular.module('myApp.todoView', ['ngRoute', 'xml'])
 }])
 
 .controller('todoViewCtrl', ['x2js', '$scope', '$http', 'sharedProperties','$location', function(x2js, $scope, $http, sharedProperties,$location) {
+    $scope.graphShow = false;
     var responseObject;
     if(sharedProperties.getUrl() != '') {
         var req = {
             method: 'GET',
-            url: 'http://25.22.141.161:8080/api/analyse/codeDebt?repoUrl='+sharedProperties.getUrl(),
+            url: sharedProperties.getApiUrl() + '/api/analyse/codeDebt?repoUrl='+sharedProperties.getUrl(),
             headers: {
                 'Content-Type': 'application/xml'
             }
@@ -26,6 +27,8 @@ angular.module('myApp.todoView', ['ngRoute', 'xml'])
             fillChart();
         }, function err(response) {
             console.log(response);
+            alert("Error loading data.");
+            $location.path("/");
         });
         console.log("function ended");
     } else {
@@ -33,9 +36,13 @@ angular.module('myApp.todoView', ['ngRoute', 'xml'])
     }
 
     var fillChart = function() {
+        $scope.graphShow = true;
+        $scope.loadingHide = true;
+        //TODO: parse xml instead of json
         console.log(responseObject.data);
-        $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
-        $scope.data = responseObject.data;
+        
+        $scope.labels = [-90, -80, -70, -60, -50, -40, -30, -20, -10, 0];
+        $scope.data = responseObject.data.reverse();
         $scope.options = {
             scales: {
             yAxes: [
@@ -44,19 +51,14 @@ angular.module('myApp.todoView', ['ngRoute', 'xml'])
                 type: 'linear',
                 display: true,
                 position: 'left'
-                },
-                {
-                id: 'y-axis-2',
-                type: 'linear',
-                display: true,
-                position: 'right'
                 }
             ]
             }
         };
+        $scope.datasets = {
+            fill: false,
+            borderColor: "#CF5C36"
+        };
+        
     };
-
-    
-
-
 }]);

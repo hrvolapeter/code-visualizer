@@ -1,6 +1,9 @@
-<p>This is initial view</p>
+<div id="container">
+    <h3 class="appName">Welcome to</h3>
+    <h1 class="appName">Code Visualizer</h1>
 
-<div ng-app="myApp" ng-controller="initViewCtrl">
-    Input: <input ng-model="input">
-    <a href="#!/todoView"><button ng-click="inputClick();">Send</button></a>
+    <div id="control" ng-app="myApp" ng-controller="initViewCtrl">
+        <input type="text" ng-model="input" autocomplete="on" placeholder="Repository url...">
+        <a href="#!/todoView"><button ng-click="inputClick();" class="initButton">GO!</button></a>
+    </div>
 </div>

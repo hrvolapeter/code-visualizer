@@ -1,10 +1,31 @@
 /* app css stylesheet */
 
+@font-face { font-family: Palanquin; src: url('fonts/palanquindark-regular.ttf'); } 
+
+html {
+  color: #DAF5FF;
+  font-family: Palanquin;
+}
+body {
+  background: #7A7978;
+  
+}
+
+div {
+  background: transparent;
+}
+
+.appName {
+  text-align: center;
+}
+
+
 .menu {
   list-style: none;
   border-bottom: 0.1em solid black;
   margin-bottom: 2em;
   padding: 0 0 0.5em;
+  
 }
 
 .menu:before {
@@ -23,3 +44,111 @@
   content: "|";
   padding-right: 0.3em;
 }
+
+.initButton {
+    width: 100%;
+    background-color: #CF5C36; 
+    color: #DAF5FF;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border: 2px solid #CF5C36;
+    border-radius: 6px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+.initButton:hover {
+    background-color: #DAF5FF;
+    color: #CF5C36;
+}
+
+input[type=text] {
+    border-radius: 6px;
+    margin: 8px auto 8px auto;
+    width: 100%;
+    border: none;
+    border-bottom: 4px solid #87F6FF;
+    color: #050517;
+    -webkit-transition-duration: 0.2s; /* Safari */
+    transition-duration: 0.2s;
+}
+
+#control {
+  width: 20%;
+  height: 100px;
+  margin: auto auto auto auto;
+}
+
+#appVersion {
+    position: fixed;
+    width: 100%;
+    bottom: 2%;
+    text-align: center;
+}
+
+#container {
+  height: 1vh;
+}
+
+.graph {
+  width: 50%;
+}
+
+.loadingGraph {
+  width: 5%;
+  border-radius: 100%;
+  border-top-style: dotted;
+  border-right-style: dotted;
+  border-bottom-style: dotted;
+  border-left-style: solid;
+  border-color: #CF5C36;
+  padding-top: 5%;
+  margin: auto;
+  animation-name: rotate;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes rotate {
+    from {transform: rotate(0)}
+    to {transform: rotate(360deg)}
+}
+
+#graphContainer {
+  background-color: #DAF5FF;
+  width: 100%;
+  border-color: #050517;
+  border-radius: 1%;
+  vertical-align: middle;
+}
+
+#selectMenu {
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+}
+
+#selectMenu button {
+    margin-left: 2px;
+    background-color: #CF5C36; 
+    color: #DAF5FF;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border: 2px solid #CF5C36;
+    border-radius: 6px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+#selectMenu button:hover {
+    background-color: #DAF5FF;
+    color: #CF5C36;
+}
+
+

@@ -9,12 +9,13 @@ angular.module('myApp.importsView', ['ngRoute', 'xml'])
   });
 }])
 
-.controller('importsViewCtrl', ['x2js', '$scope', '$http', 'sharedProperties','$location', function(x2js, $scope, $http, sharedProperties,$location) {
+.controller('importsViewCtrl', ['x2js', '$scope', '$http', 'sharedProperties','$location','$compile', function(x2js, $scope, $http, sharedProperties,$location, $compile) {
+    $scope.graphShow = false;
     var responseObject;
     if(sharedProperties.getUrl() != '') {
         var req = {
             method: 'GET',
-            url: 'http://25.22.141.161:8080/api/analyse/imports?repoUrl='+sharedProperties.getUrl(),
+            url: sharedProperties.getApiUrl() + '/api/analyse/imports?repoUrl=' + sharedProperties.getUrl(),
             headers: {
                 'Content-Type': 'application/xml'
             }
@@ -32,20 +33,40 @@ angular.module('myApp.importsView', ['ngRoute', 'xml'])
         $location.path("/");
     }
 
+    var ls = [];
+    var ds = [];
+
     var fillChart = function() {
-        console.log(responseObject.data);
-        $scope.labels = [];
-        $scope.data = [];
-        console.log(responseObject.data[0]);
-        for (var i = 0; i < responseObject.data[0].length; i++) { 
-            console.log(responseObject.data[0][i]);
-            console.log(responseObject.data[0][i].Key);
-            console.log(responseObject.data[0][i].Value);
-            $scope.labels.push(responseObject.data[0][i].Key);
-            $scope.data.push(responseObject.data[0][i].Value);
+        $scope.graphShow = true;
+        $scope.loadingHide = true;
+        for (var i = 0; i < responseObject.data.length; i++) { 
+            var lss = [];
+            var dss = [];
+            for(var j = 0; j < responseObject.data[i].length; j++) {
+                lss.push(responseObject.data[i][j].Key);
+                dss.push(responseObject.data[i][j].Value);
+            }
+            ls.push(lss);
+            ds.push(dss);
+
+
+        }
+        
+        $scope.labels = ls[0];
+        $scope.data = ds[0];
+
+        $scope.datasets = {
+            fill: false,
+            borderColor: "#CF5C36"
         }
         
     };
+
+    $scope.updateChart = function(value) {
+        $scope.labels = ls[value];
+        $scope.data = ds[value];
+        console.log("chart update index: " + value);
+    }
 
     
 

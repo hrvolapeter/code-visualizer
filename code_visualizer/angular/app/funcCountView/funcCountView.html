@@ -1,3 +1,11 @@
-<label for="urls"></label>
-<canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-options="options">
-</canvas>
+
+<div class="graph">
+<div class="loadingGraph" ng-hide="loadingHide">
+    </div>
+<div id="graphContainer" class="ng-cloak" ng-show="graphShow">
+        
+        <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-options="options" chart-dataset-override="datasets" chart-colors="colors">
+        
+        </canvas>
+    </div>
+</div>
