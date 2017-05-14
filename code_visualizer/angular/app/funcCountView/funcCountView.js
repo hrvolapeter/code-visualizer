@@ -14,7 +14,7 @@ angular.module('myApp.funcCountView', ['ngRoute', 'xml'])
     if(sharedProperties.getUrl() != '') {
         var req = {
             method: 'GET',
-            url: 'http://25.22.141.161:8080/api/analyse/funcCount?repoUrl='+sharedProperties.getUrl(),
+            url: sharedProperties.getApiUrl() + '/api/analyse/funcCount?repoUrl='+sharedProperties.getUrl(),
             headers: {
                 'Content-Type': 'application/xml'
             }
