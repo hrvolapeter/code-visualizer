@@ -8,6 +8,7 @@ angular.module('myApp', [
   'myApp.todoView',
   'myApp.rowCountView',
   'myApp.funcCountView',
+  'myApp.importsView',
   'myApp.view2',
   'myApp.version'
 ])
