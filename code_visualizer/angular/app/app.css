@@ -1,7 +1,10 @@
 /* app css stylesheet */
 
+@font-face { font-family: Palanquin; src: url('fonts/palanquindark-regular.ttf'); } 
+
 html {
   color: #DAF5FF;
+  font-family: Palanquin;
 }
 body {
   background: #7A7978;
