@@ -1,5 +1,21 @@
 /* app css stylesheet */
 
+html {
+  color: #DAF5FF;
+}
+body {
+  background: #7A7978;
+}
+
+div {
+  background: transparent;
+}
+
+.appName {
+  text-align: center;
+}
+
+
 .menu {
   list-style: none;
   border-bottom: 0.1em solid black;
