@@ -9,6 +9,10 @@ angular.module('myApp.initView', ['ngRoute', 'xml'])
   });
 }])
 
-.controller('initViewCtrl', ['$scope',function($scope) {
+.controller('initViewCtrl', ['$scope', 'sharedProperties',function($scope, sharedProperties) {
     $scope.menuVisible = false;
+    $scope.inputClick = function() {
+      $scope.menuVisible = true; 
+      sharedProperties.setUrl($scope.input);
+    }
 }]);

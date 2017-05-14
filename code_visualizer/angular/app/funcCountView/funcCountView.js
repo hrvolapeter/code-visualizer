@@ -1,20 +1,20 @@
 'use strict';
 
-angular.module('myApp.todoView', ['ngRoute', 'xml'])
+angular.module('myApp.funcCountView', ['ngRoute', 'xml'])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/todoView', {
-    templateUrl: 'todoView/todoView.html',
-    controller: 'todoViewCtrl'
+  $routeProvider.when('/funcCountView', {
+    templateUrl: 'funcCountView/funcCountView.html',
+    controller: 'funcCountViewCtrl'
   });
 }])
 
-.controller('todoViewCtrl', ['x2js', '$scope', '$http', 'sharedProperties','$location', function(x2js, $scope, $http, sharedProperties,$location) {
+.controller('funcCountViewCtrl', ['x2js', '$scope', '$http', 'sharedProperties','$location', function(x2js, $scope, $http, sharedProperties,$location) {
     var responseObject;
     if(sharedProperties.getUrl() != '') {
         var req = {
             method: 'GET',
-            url: 'http://25.22.141.161:8080/api/analyse/codeDebt?repoUrl='+sharedProperties.getUrl(),
+            url: 'http://25.22.141.161:8080/api/analyse/funcCount?repoUrl='+sharedProperties.getUrl(),
             headers: {
                 'Content-Type': 'application/xml'
             }
