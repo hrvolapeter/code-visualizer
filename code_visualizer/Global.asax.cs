@@ -17,7 +17,7 @@ namespace code_visualizer
 
 		protected void Application_BeginRequest(Object sender, EventArgs e)
 		{
-            if (!Request.Path.Contains("api"))
+            if (!Request.Path.StartsWith("/api"))
             {
                 if (!Request.Path.Contains("js") && !Request.Path.Contains("css") && !Request.Path.Contains("html"))
                 {
