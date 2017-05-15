@@ -35,6 +35,7 @@ angular.module('myApp.todoView', ['ngRoute', 'xml'])
     }
 
     var fillChart = function() {
+        $scope.loadingHide = true;
         console.log(responseObject.data);
         $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
         $scope.data = responseObject.data;

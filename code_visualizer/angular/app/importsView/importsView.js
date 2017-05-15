@@ -33,6 +33,7 @@ angular.module('myApp.importsView', ['ngRoute', 'xml'])
     }
 
     var fillChart = function() {
+        $scope.loadingHide = true;
         console.log(responseObject.data);
         $scope.labels = [];
         $scope.data = [];

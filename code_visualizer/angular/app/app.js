@@ -4,7 +4,6 @@
 angular.module('myApp', [
   'chart.js',
   'ngRoute',
-  'ngAnimate',
   'myApp.initView',
   'myApp.todoView',
   'myApp.rowCountView',
