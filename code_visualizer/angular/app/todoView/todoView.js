@@ -26,6 +26,8 @@ angular.module('myApp.todoView', ['ngRoute', 'xml'])
             fillChart();
         }, function err(response) {
             console.log(response);
+            alert("Error loading data.");
+            $location.path("/");
         });
         console.log("function ended");
     } else {

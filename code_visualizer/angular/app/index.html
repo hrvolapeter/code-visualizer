@@ -18,7 +18,7 @@
   <div id="container">
     <div ng-controller="mainCtrl">
       
-      <ul class="menu" ng-show="menuVisible">
+      <ul class="menu ng-cloak" ng-show="menuVisible">
         <li><a href="#!/todoView">TODOs</a></li>
         <li><a href="#!/rowCountView">Row Count</a></li>
         <li><a href="#!/funcCountView">Function Count</a></li>
@@ -54,5 +54,6 @@
   <script src="components/version/interpolate-filter.js"></script>
   <script src="bower_components/chart.js/dist/Chart.min.js"></script>
   <script src="bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.min.js"></script>
 </body>
 </html>

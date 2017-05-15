@@ -25,6 +25,7 @@ div {
   border-bottom: 0.1em solid black;
   margin-bottom: 2em;
   padding: 0 0 0.5em;
+  
 }
 
 .menu:before {
@@ -91,3 +92,28 @@ input[type=text] {
 #container {
   height: 1vh;
 }
+
+.graph {
+  width: 50%;
+}
+
+.loadingGraph {
+  width: 5%;
+  border-radius: 100%;
+  border-top-style: dotted;
+  border-right-style: dotted;
+  border-bottom-style: dotted;
+  border-left-style: solid;
+  border-color: #CF5C36;
+  padding-top: 5%;
+  margin: 100px auto auto auto;
+  animation-name: rotate;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes rotate {
+    from {transform: rotate(0)}
+    to {transform: rotate(360deg)}
+}
+
