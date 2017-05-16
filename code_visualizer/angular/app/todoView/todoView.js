@@ -38,6 +38,7 @@ angular.module('myApp.todoView', ['ngRoute', 'xml'])
     var fillChart = function() {
         $scope.graphShow = true;
         $scope.loadingHide = true;
+        //TODO: parse xml instead of json
         console.log(responseObject.data);
         
         $scope.labels = [-90, -80, -70, -60, -50, -40, -30, -20, -10, 0];

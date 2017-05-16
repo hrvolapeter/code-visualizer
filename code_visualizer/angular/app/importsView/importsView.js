@@ -33,20 +33,35 @@ angular.module('myApp.importsView', ['ngRoute', 'xml'])
         $location.path("/");
     }
 
+    var ls = [];
+    var ds = [];
+
     var fillChart = function() {
         $scope.graphShow = true;
         $scope.loadingHide = true;
-        console.log(responseObject.data);
-        $scope.labels = [];
-        $scope.data = [];
-        console.log(responseObject.data[0]);
-        for (var i = 0; i < responseObject.data[0].length; i++) { 
-            console.log(responseObject.data[0][i]);
-            console.log(responseObject.data[0][i].Key);
-            console.log(responseObject.data[0][i].Value);
-            $scope.labels.push(responseObject.data[0][i].Key);
-            $scope.data.push(responseObject.data[0][i].Value);
+        var menu = document.getElementById("selectMenu");
+        
+        var index = -90;
+        for (var i = 0; i < responseObject.data.length; i++) { 
+            var lss = [];
+            var dss = [];
+            for(var j = 0; j < responseObject.data[i].length; j++) {
+                lss.push(responseObject.data[i][j].Key);
+                dss.push(responseObject.data[i][j].Value);
+            }
+            ls.push(lss);
+            ds.push(dss);
+            var btn = document.createElement("button");
+            var node = document.createTextNode(index);
+            btn.appendChild(node);
+            index += 10;
+            var attr = document.createAttribute("ng-click");
+            //btn.appendChild(attr);
+            btn.setAttribute("ng-click","updateChart(" + i +");");
+            menu.appendChild(btn);
         }
+        $scope.labels = ls[0];
+        $scope.data = ds[0];
 
         $scope.datasets = {
             fill: false,
@@ -54,6 +69,11 @@ angular.module('myApp.importsView', ['ngRoute', 'xml'])
         }
         
     };
+
+    var updateChart = function(value) {
+        $scope.labels = ls[value];
+        $scope.data = ds[value];
+    }
 
     
 
