@@ -10,6 +10,7 @@ angular.module('myApp.todoView', ['ngRoute', 'xml'])
 }])
 
 .controller('todoViewCtrl', ['x2js', '$scope', '$http', 'sharedProperties','$location', function(x2js, $scope, $http, sharedProperties,$location) {
+    $scope.graphShow = false;
     var responseObject;
     if(sharedProperties.getUrl() != '') {
         var req = {
@@ -35,10 +36,12 @@ angular.module('myApp.todoView', ['ngRoute', 'xml'])
     }
 
     var fillChart = function() {
+        $scope.graphShow = true;
         $scope.loadingHide = true;
         console.log(responseObject.data);
-        $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
-        $scope.data = responseObject.data;
+        
+        $scope.labels = [-90, -80, -70, -60, -50, -40, -30, -20, -10, 0];
+        $scope.data = responseObject.data.reverse();
         $scope.options = {
             scales: {
             yAxes: [
@@ -47,15 +50,14 @@ angular.module('myApp.todoView', ['ngRoute', 'xml'])
                 type: 'linear',
                 display: true,
                 position: 'left'
-                },
-                {
-                id: 'y-axis-2',
-                type: 'linear',
-                display: true,
-                position: 'right'
                 }
             ]
             }
         };
+        $scope.datasets = {
+            fill: false,
+            borderColor: "#CF5C36"
+        };
+        
     };
 }]);

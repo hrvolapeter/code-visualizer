@@ -106,7 +106,7 @@ input[type=text] {
   border-left-style: solid;
   border-color: #CF5C36;
   padding-top: 5%;
-  margin: 100px auto auto auto;
+  margin: auto;
   animation-name: rotate;
   animation-duration: 3s;
   animation-iteration-count: infinite;
@@ -116,4 +116,13 @@ input[type=text] {
     from {transform: rotate(0)}
     to {transform: rotate(360deg)}
 }
+
+#graphContainer {
+  background-color: #DAF5FF;
+  width: 100%;
+  border-color: #050517;
+  border-radius: 1%;
+  vertical-align: middle;
+}
+
 

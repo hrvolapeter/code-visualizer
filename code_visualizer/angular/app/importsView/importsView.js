@@ -10,6 +10,7 @@ angular.module('myApp.importsView', ['ngRoute', 'xml'])
 }])
 
 .controller('importsViewCtrl', ['x2js', '$scope', '$http', 'sharedProperties','$location', function(x2js, $scope, $http, sharedProperties,$location) {
+    $scope.graphShow = false;
     var responseObject;
     if(sharedProperties.getUrl() != '') {
         var req = {
@@ -33,6 +34,7 @@ angular.module('myApp.importsView', ['ngRoute', 'xml'])
     }
 
     var fillChart = function() {
+        $scope.graphShow = true;
         $scope.loadingHide = true;
         console.log(responseObject.data);
         $scope.labels = [];
@@ -44,6 +46,11 @@ angular.module('myApp.importsView', ['ngRoute', 'xml'])
             console.log(responseObject.data[0][i].Value);
             $scope.labels.push(responseObject.data[0][i].Key);
             $scope.data.push(responseObject.data[0][i].Value);
+        }
+
+        $scope.datasets = {
+            fill: false,
+            borderColor: "#CF5C36"
         }
         
     };
