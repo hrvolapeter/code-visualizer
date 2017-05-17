@@ -9,7 +9,7 @@ angular.module('myApp.importsView', ['ngRoute', 'xml'])
   });
 }])
 
-.controller('importsViewCtrl', ['x2js', '$scope', '$http', 'sharedProperties','$location', function(x2js, $scope, $http, sharedProperties,$location) {
+.controller('importsViewCtrl', ['x2js', '$scope', '$http', 'sharedProperties','$location','$compile', function(x2js, $scope, $http, sharedProperties,$location, $compile) {
     $scope.graphShow = false;
     var responseObject;
     if(sharedProperties.getUrl() != '') {
@@ -39,9 +39,6 @@ angular.module('myApp.importsView', ['ngRoute', 'xml'])
     var fillChart = function() {
         $scope.graphShow = true;
         $scope.loadingHide = true;
-        var menu = document.getElementById("selectMenu");
-        
-        var index = -90;
         for (var i = 0; i < responseObject.data.length; i++) { 
             var lss = [];
             var dss = [];
@@ -51,15 +48,10 @@ angular.module('myApp.importsView', ['ngRoute', 'xml'])
             }
             ls.push(lss);
             ds.push(dss);
-            var btn = document.createElement("button");
-            var node = document.createTextNode(index);
-            btn.appendChild(node);
-            index += 10;
-            var attr = document.createAttribute("ng-click");
-            //btn.appendChild(attr);
-            btn.setAttribute("ng-click","updateChart(" + i +");");
-            menu.appendChild(btn);
+
+
         }
+        
         $scope.labels = ls[0];
         $scope.data = ds[0];
 
@@ -70,9 +62,10 @@ angular.module('myApp.importsView', ['ngRoute', 'xml'])
         
     };
 
-    var updateChart = function(value) {
+    $scope.updateChart = function(value) {
         $scope.labels = ls[value];
         $scope.data = ds[value];
+        console.log("chart update index: " + value);
     }
 
     
