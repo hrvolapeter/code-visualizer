@@ -17,8 +17,10 @@ angular.module('myApp.funcCountView', ['ngRoute', 'xml'])
             method: 'GET',
             url: sharedProperties.getApiUrl() + '/api/analyse/funcCount?repoUrl='+sharedProperties.getUrl(),
             headers: {
-                'Content-Type': 'application/xml'
-            }
+                'Content-Type': 'application/xml',
+                'Accept': 'application/xml'
+            },
+            data: ''
         };
         console.log(req);
         $http(req).then(function succ(response) {
