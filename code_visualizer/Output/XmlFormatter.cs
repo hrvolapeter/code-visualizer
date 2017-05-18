@@ -42,9 +42,10 @@ namespace code_visualizer
 			stream.Close();
 		}
 
+
 		private void WriteItemDict(XmlOutput<List<KeyValuePair<string, int>>> output, StreamWriter writer)
 		{
-			string elementName;
+			string elementName = "";
 			string attributeName = "type";
 			switch (output.Type) 
 			{
@@ -60,6 +61,7 @@ namespace code_visualizer
 					break;
 				case JobType.ParamTypesCount:
 					elementName = "arguments";
+                    break;
 			}
 			XElement root = new XElement("versions");
 			foreach (var list in output.Data) 
@@ -77,9 +79,10 @@ namespace code_visualizer
 			writer.WriteLine(root.ToString());
 		}
 
+
 		private void WriteItemInt(XmlOutput<int> output, StreamWriter writer)
 		{
-			string elementName;
+            string elementName = "";
 			switch (output.Type) 
 			{
 				case JobType.ToDo:

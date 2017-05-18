@@ -30,6 +30,7 @@ namespace code_visualizer
 			return count;
 		}
 
+
 		/// <summary>
 		/// Counts total number of rows in a file
 		/// </summary>
@@ -41,6 +42,7 @@ namespace code_visualizer
 			XPathNavigator nav = doc.CreateNavigator();
 			return RecCountRows(nav);
 		}
+
 
 		/// <summary>
 		/// Counts total number of rows in a file recursively
@@ -69,6 +71,7 @@ namespace code_visualizer
 			return count;
 		}
 
+
 		/// <summary>
 		/// Counts total number of functions
 		/// </summary>
@@ -81,6 +84,7 @@ namespace code_visualizer
 			var nodes = doc.GetElementsByTagName("function");
 			return nodes.Count;
 		}
+
 
 		/// <summary>
 		/// Counts number of occurances of parameter types
@@ -109,6 +113,7 @@ namespace code_visualizer
 			}
 			return ret;
 		}
+
 
 		/// <summary>
 		/// Gets all import names and the number of imports
@@ -149,6 +154,7 @@ namespace code_visualizer
 			return ret;
 		}
 
+
 		/// <summary>
 		/// Gets name of the import from the node
 		/// </summary>
@@ -178,6 +184,7 @@ namespace code_visualizer
 			return ((double)count) / CountFuncs(xmlPath);
 		}
 
+
 		/// <summary>
 		/// Counts all occurances of loops (for, foreach, while, do)
 		/// </summary>
@@ -196,6 +203,7 @@ namespace code_visualizer
 			return loops;
 		}
 
+
 		/// <summary>
 		/// Counts number of all occurances of if statement
 		/// </summary>
@@ -208,6 +216,7 @@ namespace code_visualizer
 			return doc.GetElementsByTagName("if").Count + doc.GetElementsByTagName("elseif").Count;
 		}
 
+
 		/// <summary>
 		/// Counts number of all occurances of else statement
 		/// </summary>
@@ -219,6 +228,7 @@ namespace code_visualizer
 			doc.Load(xmlPath);
 			return doc.GetElementsByTagName("else").Count + doc.GetElementsByTagName("elseif").Count;
 		}
+
 
 		/// <summary>
 		/// Specifies types of return parametres and number of their occurances

@@ -17,8 +17,16 @@ namespace code_visualizer.Controllers
 			return ordered;
 		}
 
+
+		/// <summary>
+		/// Count todos
+		/// </summary>
+		/// <param name="repoUrl">string that contains repo url</param>
+		/// <param name="diff">uint number to commits between time travel</param>
+		/// <param name="times">uint of number of time travels</param>
+		/// <returns>list that contains count of todos</returns>
 		[HttpGet]
-		public IHttpActionResult CodeDebt(string repoUrl, uint diff = 10, int times = 10)
+		public IHttpActionResult CodeDebt(string repoUrl, uint diff = 10, uint times = 10)
 		{
 			var path = GitController.InitRepository(repoUrl);
 			var todoCounts = new List<int>();
@@ -32,8 +40,15 @@ namespace code_visualizer.Controllers
 		}
 
 
+		/// <summary>
+		/// Count of rows per project
+		/// </summary>
+		/// <param name="repoUrl">string that contains repo url</param>
+		/// <param name="diff">uint number to commits between time travel</param>
+		/// <param name="times">uint of number of time travels</param>
+		/// <returns>list that contains number of occurances</returns>
 		[HttpGet]
-		public IHttpActionResult RowCount(string repoUrl, uint diff = 10, int times = 10)
+		public IHttpActionResult RowCount(string repoUrl, uint diff = 10, uint times = 10)
 		{
 			var path = GitController.InitRepository(repoUrl);
 			var rowCounts = new List<int>();
@@ -47,8 +62,15 @@ namespace code_visualizer.Controllers
 		}
 
 
+		/// <summary>
+		/// Count of funcitons in project
+		/// </summary>
+		/// <param name="repoUrl">string that contains repo url</param>
+		/// <param name="diff">uint number to commits between time travel</param>
+		/// <param name="times">uint of number of time travels</param>
+		/// <returns>list that contains number of occurances</returns>
 		[HttpGet]
-		public IHttpActionResult FuncCount(string repoUrl, uint diff = 10, int times = 10)
+		public IHttpActionResult FuncCount(string repoUrl, uint diff = 10, uint times = 10)
 		{
 			var path = GitController.InitRepository(repoUrl);
 			var funcCounts = new List<int>();
@@ -62,8 +84,15 @@ namespace code_visualizer.Controllers
 		}
 
 
+		/// <summary>
+		/// Count of imports per project
+		/// </summary>
+		/// <param name="repoUrl">string that contains repo url</param>
+		/// <param name="diff">uint number to commits between time travel</param>
+		/// <param name="times">uint of number of time travels</param>
+		/// <returns>dictionary that contains type of parameter and number of occurances</returns>
 		[HttpGet]
-		public IHttpActionResult Imports(string repoUrl, uint diff = 10, int times = 10)
+		public IHttpActionResult Imports(string repoUrl, uint diff = 10, uint times = 10)
 		{
 			var path = GitController.InitRepository(repoUrl);
 			var importCounts = new List<Dictionary<string, int>>();
@@ -78,8 +107,15 @@ namespace code_visualizer.Controllers
 		}
 
 
+		/// <summary>
+		/// Count of params and type
+		/// </summary>
+		/// <param name="repoUrl">string that contains repo url</param>
+		/// <param name="diff">uint number to commits between time travel</param>
+		/// <param name="times">uint of number of time travels</param>
+		/// <returns>dictionary that contains type of parameter and number of occurances</returns>
 		[HttpGet]
-		public IHttpActionResult Params(string repoUrl, uint diff = 10, int times = 10)
+		public IHttpActionResult Params(string repoUrl, uint diff = 10, uint times = 10)
 		{
 			var path = GitController.InitRepository(repoUrl);
 			var paramCounts = new List<Dictionary<string, int>>();
@@ -93,8 +129,16 @@ namespace code_visualizer.Controllers
 			return Ok(new XmlOutput<List<KeyValuePair<string, int>>>(orderedCounts.ToArray(), JobType.ParamTypesCount));
 		}
 
+
+		/// <summary>
+		/// Average Row count per function
+		/// </summary>
+		/// <param name="repoUrl">string that contains repo url</param>
+		/// <param name="diff">uint number to commits between time travel</param>
+		/// <param name="times">uint of number of time travels</param>
+		/// <returns>list that contains number of occurances</returns>
 		[HttpGet]
-		public IHttpActionResult AverageRowCountPerFunction(string repoUrl, uint diff = 10, int times = 10)
+		public IHttpActionResult AverageRowCountPerFunction(string repoUrl, uint diff = 10, uint times = 10)
 		{
 			var path = GitController.InitRepository(repoUrl);
 			var avgRowCounts = new List<double>();
@@ -104,11 +148,19 @@ namespace code_visualizer.Controllers
 				avgRowCounts.Add(XmlController.GetAverageRowsPerFunction(srcmlPath));
 				GitController.TimeTravelCommits(path, diff);
 			}
-			return Ok(new XmlOutput<int>(avgRowCounts.ToArray(), JobType.AvgRowsPerFunction));
+			return Ok(new XmlOutput<double>(avgRowCounts.ToArray(), JobType.AvgRowsPerFunction));
 		}
 
+
+		/// <summary>
+		/// Count of loops per project
+		/// </summary>
+		/// <param name="repoUrl">string that contains repo url</param>
+		/// <param name="diff">uint number to commits between time travel</param>
+		/// <param name="times">uint of number of time travels</param>
+		/// <returns>dictionary that contains type of loops and number of occurances</returns>
 		[HttpGet]
-		public IHttpActionResult LoopsCount(string repoUrl, uint diff = 10, int times = 10)
+		public IHttpActionResult LoopsCount(string repoUrl, uint diff = 10, uint times = 10)
 		{
 			var path = GitController.InitRepository(repoUrl);
 			var loopsCounts = new List<Dictionary<string, int>>();
@@ -118,10 +170,18 @@ namespace code_visualizer.Controllers
 				loopsCounts.Add(XmlController.CountLoops(srcmlPath));
 				GitController.TimeTravelCommits(path, diff);
 			}
-			var orderedCounts = Sort(LoopsCount);
+			var orderedCounts = Sort(loopsCounts);
 			return Ok(new XmlOutput<List<KeyValuePair<string, int>>>(orderedCounts.ToArray(), JobType.Loops));
 		}
 
+
+		/// <summary>
+		/// Count of ifs per project
+		/// </summary>
+		/// <param name="repoUrl">string that contains repo url</param>
+		/// <param name="diff">uint number to commits between time travel</param>
+		/// <param name="times">uint of number of time travels</param>
+		/// <returns>list that contains number of occurances</returns>
 		[HttpGet]
 		public IHttpActionResult IfCount(string repoUrl, uint diff = 10, int times = 10)
 		{
@@ -136,20 +196,14 @@ namespace code_visualizer.Controllers
 			return Ok(new XmlOutput<int>(ifCounts.ToArray(), JobType.Ifs));
 		}
 
-		/*[HttpGet]
-		public IHttpActionResult ElseCount(string repoUrl, uint diff = 10, int times = 10)
-		{
-			var path = GitController.InitRepository(repoUrl);
-			var elseCounts = new List<int>();
-			for (var i = 0; i < times; i++)
-			{
-				var srcmlPath = SrcmlController.ParseSources(path);
-				elseCounts.Add(XmlController.CountElses(srcmlPath));
-				GitController.TimeTravelCommits(path, diff);
-			}
-			return Ok(elseCounts.ToArray());
-		}*/
 
+		/// <summary>
+		/// counts of return types per project
+		/// </summary>
+		/// <param name="repoUrl">string that contains repo url</param>
+		/// <param name="diff">uint number to commits between time travel</param>
+		/// <param name="times">uint of number of time travels</param>
+		/// <returns>dictionary that contains type of return and number of occurances</returns>
 		[HttpGet]
 		public IHttpActionResult ReturnTypesCount(string repoUrl, uint diff = 10, int times = 10)
 		{

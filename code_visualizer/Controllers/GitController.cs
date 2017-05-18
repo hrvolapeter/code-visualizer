@@ -5,7 +5,13 @@ namespace code_visualizer
 {
     public static class GitController
     {
-        public static string InitRepository(string repoUrl)
+
+		/// <summary>
+		/// Initialize new local repo
+		/// </summary>
+		/// <param name="repoUrl">string that contains url of github repository</param>
+		/// <returns>string to local repo path</returns>
+		public static string InitRepository(string repoUrl)
         {
             var folderPath = GetFolderPath(repoUrl);
             if (Directory.Exists(folderPath) && LibGit2Sharp.Repository.IsValid(folderPath))
@@ -19,6 +25,7 @@ namespace code_visualizer
             return folderPath;
         }
 
+
         private static void Reset(string repoUrl)
         {
             var path = GetFolderPath(repoUrl);
@@ -26,6 +33,7 @@ namespace code_visualizer
             LibGit2Sharp.Commands.Checkout(repo, "master");
 
 		}
+
 
         private static void ClearFolder(string FolderName)
 		{
@@ -49,7 +57,12 @@ namespace code_visualizer
 		}
 
 
-        public static void TimeTravelCommits(string repositoryPath, uint difference)
+		/// <summary>
+		/// Moving in repositary tree
+		/// </summary>
+		/// <param name="repositoryPath">string local path to repository</param>
+		/// <param name="difference>uint to move given number of commits</param>
+		public static void TimeTravelCommits(string repositoryPath, uint difference)
         {
             var repo = new LibGit2Sharp.Repository(repositoryPath);
             var enu = repo.Commits.GetEnumerator();
@@ -57,7 +70,9 @@ namespace code_visualizer
             {
                 enu.MoveNext();
             }
+            LibGit2Sharp.Commands.Checkout(repo, enu.Current);
         }
+
 
         private static string GetFolderPath(string repoUrl)
         {
