@@ -56,7 +56,7 @@ API validation schema is available in project source codes.
   <version>
     <rows>48</rows>
   </version>
- </versions>
+  </versions>
   ```
 - count functions in repo  
   *GET* api/analyse/funcCount?repoUrl={url}&diff={3?}&times={10?}
