@@ -13,6 +13,8 @@ namespace code_visualizer
 		protected void Application_Start()
 		{
 			GlobalConfiguration.Configure(WebApiConfig.Register);
+			GlobalConfiguration.Configuration.Formatters.Clear();
+			GlobalConfiguration.Configuration.Formatters.Add(new XmlFormatter());
 		}
 
 		protected void Application_BeginRequest(Object sender, EventArgs e)

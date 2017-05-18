@@ -102,6 +102,9 @@
     <Compile Include="Controllers\GitController.cs" />
     <Compile Include="Controllers\SrcmlController.cs" />
     <Compile Include="Controllers\XmlController.cs" />
+    <Compile Include="Output\XmlOutput.cs" />
+    <Compile Include="Output\JobType.cs" />
+    <Compile Include="Output\XmlFormatter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="libs\osxsrcml" />
@@ -144,4 +147,7 @@
       </Properties>
     </MonoDevelop>
   </ProjectExtensions>
+  <ItemGroup>
+    <Folder Include="Output\" />
+  </ItemGroup>
 </Project>

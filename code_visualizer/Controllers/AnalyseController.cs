@@ -6,6 +6,17 @@ namespace code_visualizer.Controllers
 {
 	public class AnalyseController : ApiController
 	{
+		private List<List<KeyValuePair<string, int>>> Sort(List<Dictionary<string, int>> list) 
+		{
+			var ordered = new List<List<KeyValuePair<string, int>>>();
+			for (int i = 0; i < list.Count; ++i)
+			{
+				ordered.Add(list[i].ToList());
+				ordered[i].Sort((pair1, pair2) => pair2.Value.CompareTo(pair1.Value));
+			}
+			return ordered;
+		}
+
 		[HttpGet]
 		public IHttpActionResult CodeDebt(string repoUrl, uint diff = 10, int times = 10)
 		{
@@ -17,7 +28,7 @@ namespace code_visualizer.Controllers
 				todoCounts.Add(XmlController.CountTodo(srcmlPath));
 				GitController.TimeTravelCommits(path, diff);
 			}
-			return Ok(todoCounts.ToArray());
+			return Ok(new XmlOutput<int>(todoCounts.ToArray(), JobType.ToDo));
 		}
 
 
@@ -32,7 +43,7 @@ namespace code_visualizer.Controllers
 				rowCounts.Add(XmlController.CountRows(srcmlPath));
 				GitController.TimeTravelCommits(path, diff);
 			}
-			return Ok(rowCounts.ToArray());
+			return Ok(new XmlOutput<int>(rowCounts.ToArray(), JobType.RowCount));
 		}
 
 
@@ -47,7 +58,7 @@ namespace code_visualizer.Controllers
 				funcCounts.Add(XmlController.CountFuncs(srcmlPath));
 				GitController.TimeTravelCommits(path, diff);
 			}
-			return Ok(funcCounts.ToArray());
+			return Ok(new XmlOutput<int>(funcCounts.ToArray(), JobType.FuncCount));
 		}
 
 
@@ -62,13 +73,8 @@ namespace code_visualizer.Controllers
 				importCounts.Add(XmlController.CountImports(srcmlPath));
 				GitController.TimeTravelCommits(path, diff);
 			}
-			var orderedCounts = new List<List<KeyValuePair<string, int>>>();
-			for (int i = 0; i < importCounts.Count; ++i)
-			{
-				orderedCounts.Add(importCounts[i].ToList());
-				orderedCounts[i].Sort((pair1, pair2) => pair2.Value.CompareTo(pair1.Value));
-			}
-			return Ok(orderedCounts.ToArray());
+			var orderedCounts = Sort(importCounts);
+			return Ok(new XmlOutput<List<KeyValuePair<string, int>>>(orderedCounts.ToArray(), JobType.Imports));
 		}
 
 
@@ -83,13 +89,8 @@ namespace code_visualizer.Controllers
 				paramCounts.Add(XmlController.CountParamTypes(srcmlPath));
 				GitController.TimeTravelCommits(path, diff);
 			}
-			var orderedCounts = new List<List<KeyValuePair<string, int>>>();
-			for (int i = 0; i < paramCounts.Count; ++i)
-			{
-				orderedCounts.Add(paramCounts[i].ToList());
-				orderedCounts[i].Sort((pair1, pair2) => pair2.Value.CompareTo(pair1.Value));
-			}
-			return Ok(orderedCounts.ToArray());
+			var orderedCounts = Sort(paramCounts);
+			return Ok(new XmlOutput<List<KeyValuePair<string, int>>>(orderedCounts.ToArray(), JobType.ParamTypesCount));
 		}
 
 		[HttpGet]
@@ -103,7 +104,7 @@ namespace code_visualizer.Controllers
 				avgRowCounts.Add(XmlController.GetAverageRowsPerFunction(srcmlPath));
 				GitController.TimeTravelCommits(path, diff);
 			}
-			return Ok(avgRowCounts.ToArray());
+			return Ok(new XmlOutput<int>(avgRowCounts.ToArray(), JobType.AvgRowsPerFunction));
 		}
 
 		[HttpGet]
@@ -117,13 +118,8 @@ namespace code_visualizer.Controllers
 				loopsCounts.Add(XmlController.CountLoops(srcmlPath));
 				GitController.TimeTravelCommits(path, diff);
 			}
-			var orderedCounts = new List<List<KeyValuePair<string, int>>>();
-			for (int i = 0; i < loopsCounts.Count; ++i)
-			{
-				orderedCounts.Add(loopsCounts[i].ToList());
-				orderedCounts[i].Sort((pair1, pair2) => pair2.Value.CompareTo(pair1.Value));
-			}
-			return Ok(loopsCounts.ToArray());
+			var orderedCounts = Sort(LoopsCount);
+			return Ok(new XmlOutput<List<KeyValuePair<string, int>>>(orderedCounts.ToArray(), JobType.Loops));
 		}
 
 		[HttpGet]
@@ -137,10 +133,10 @@ namespace code_visualizer.Controllers
 				ifCounts.Add(XmlController.CountIfs(srcmlPath));
 				GitController.TimeTravelCommits(path, diff);
 			}
-			return Ok(ifCounts.ToArray());
+			return Ok(new XmlOutput<int>(ifCounts.ToArray(), JobType.Ifs));
 		}
 
-		[HttpGet]
+		/*[HttpGet]
 		public IHttpActionResult ElseCount(string repoUrl, uint diff = 10, int times = 10)
 		{
 			var path = GitController.InitRepository(repoUrl);
@@ -152,7 +148,7 @@ namespace code_visualizer.Controllers
 				GitController.TimeTravelCommits(path, diff);
 			}
 			return Ok(elseCounts.ToArray());
-		}
+		}*/
 
 		[HttpGet]
 		public IHttpActionResult ReturnTypesCount(string repoUrl, uint diff = 10, int times = 10)
@@ -165,13 +161,8 @@ namespace code_visualizer.Controllers
 				returnTypesCounts.Add(XmlController.CountReturnTypes(srcmlPath));
 				GitController.TimeTravelCommits(path, diff);
 			}
-			var orderedCounts = new List<List<KeyValuePair<string, int>>>();
-			for (int i = 0; i < returnTypesCounts.Count; ++i)
-			{
-				orderedCounts.Add(returnTypesCounts[i].ToList());
-				orderedCounts[i].Sort((pair1, pair2) => pair2.Value.CompareTo(pair1.Value));
-			}
-			return Ok(returnTypesCounts.ToArray());
+			var orderedCounts = Sort(returnTypesCounts);
+			return Ok(new XmlOutput<List<KeyValuePair<string, int>>>(orderedCounts.ToArray(), JobType.ReturnTypesCount));
 		}
 	}
 }
