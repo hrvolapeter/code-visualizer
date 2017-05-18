@@ -11,7 +11,7 @@ angular.module('myApp.rowCountView', ['ngRoute', 'xml'])
 
 .controller('rowCountViewCtrl', ['x2js', '$scope', '$http', 'sharedProperties','$location', function(x2js, $scope, $http, sharedProperties,$location) {
     $scope.graphShow = false;
-    var responseObject;
+    var responseData;
     if(sharedProperties.getUrl() != '') {
         var req = {
             method: 'GET',
@@ -24,7 +24,7 @@ angular.module('myApp.rowCountView', ['ngRoute', 'xml'])
         };
         console.log(req);
         $http(req).then(function succ(response) {
-            responseObject = response;
+            responseData = x2js.xml_str2json(response.data);
             console.log(response);
             fillChart();
         }, function err(response) {
