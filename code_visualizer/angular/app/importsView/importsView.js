@@ -41,12 +41,13 @@ angular.module('myApp.importsView', ['ngRoute', 'xml'])
     var fillChart = function() {
         $scope.graphShow = true;
         $scope.loadingHide = true;
-        for (var i = 0; i < responseObject.data.length; i++) { 
+        console.log(responseData);
+        for (var i = 0; i < responseData.versions.version.length; i++) { 
             var lss = [];
             var dss = [];
-            for(var j = 0; j < responseObject.data[i].length; j++) {
-                lss.push(responseObject.data[i][j].Key);
-                dss.push(responseObject.data[i][j].Value);
+            for(var j = 0; j < responseData.versions.version[i].import.length; j++) {
+                lss.push(responseData.versions.version[i].import[j]._name);
+                dss.push(responseData.versions.version[i].import[j].__text);
             }
             ls.push(lss);
             ds.push(dss);

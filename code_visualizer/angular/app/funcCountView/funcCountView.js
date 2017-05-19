@@ -38,9 +38,11 @@ angular.module('myApp.funcCountView', ['ngRoute', 'xml'])
     var fillChart = function() {
         $scope.graphShow = true;
         $scope.loadingHide = true;
-        console.log(responseObject.data);
+        $scope.data = []
         $scope.labels = [-90, -80, -70, -60, -50, -40, -30, -20, -10, 0];
-        $scope.data = responseObject.data.reverse();
+        for(var i = responseData.versions.version.length - 1; i >=0; i--) {
+            $scope.data.push(responseData.versions.version[i].function);
+        }
         $scope.options = {
             scales: {
             yAxes: [
