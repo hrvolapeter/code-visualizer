@@ -42,9 +42,11 @@ angular.module('myApp.todoView', ['ngRoute', 'xml'])
         $scope.loadingHide = true;
         //TODO: parse xml instead of json
         console.log(responseData);
-        
+        $scope.data = []
         $scope.labels = [-90, -80, -70, -60, -50, -40, -30, -20, -10, 0];
-        $scope.data = responseData.reverse();
+        for(var i = responseData.versions.version.length - 1; i >=0; i--) {
+            $scope.data.push(responseData.versions.version[i].todo);
+        }
         $scope.options = {
             scales: {
             yAxes: [
