@@ -41,7 +41,7 @@ angular.module('myApp.importsView', ['ngRoute', 'xml'])
     var fillChart = function() {
         $scope.graphShow = true;
         $scope.loadingHide = true;
-        console.log(responseData);
+
         for (var i = 0; i < responseData.versions.version.length; i++) { 
             var lss = [];
             var dss = [];
@@ -68,7 +68,6 @@ angular.module('myApp.importsView', ['ngRoute', 'xml'])
     $scope.updateChart = function(value) {
         $scope.labels = ls[value];
         $scope.data = ds[value];
-        console.log("chart update index: " + value);
     }
 
     

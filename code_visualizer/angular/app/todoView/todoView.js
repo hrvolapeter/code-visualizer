@@ -25,14 +25,12 @@ angular.module('myApp.todoView', ['ngRoute', 'xml'])
         console.log(req);
         $http(req).then(function succ(response) {
             responseData = x2js.xml_str2json(response.data);
-            console.log(response);
             fillChart();
         }, function err(response) {
             console.log(response);
             alert("Error loading data.");
             $location.path("/");
         });
-        console.log("function ended");
     } else {
         $location.path("/");
     }
@@ -40,8 +38,6 @@ angular.module('myApp.todoView', ['ngRoute', 'xml'])
     var fillChart = function() {
         $scope.graphShow = true;
         $scope.loadingHide = true;
-        //TODO: parse xml instead of json
-        console.log(responseData);
         $scope.data = []
         $scope.labels = [-90, -80, -70, -60, -50, -40, -30, -20, -10, 0];
         for(var i = responseData.versions.version.length - 1; i >=0; i--) {
