@@ -1,21 +1,21 @@
 'use strict';
 
-angular.module('myApp.todoView', ['ngRoute', 'xml'])
+angular.module('myApp.ifCountView', ['ngRoute', 'xml'])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/todoView', {
-    templateUrl: 'todoView/todoView.html',
-    controller: 'todoViewCtrl'
+  $routeProvider.when('/ifCountView', {
+    templateUrl: 'ifCountView/ifCountView.html',
+    controller: 'ifCountViewCtrl'
   });
 }])
 
-.controller('todoViewCtrl', ['x2js', '$scope', '$http', 'sharedProperties','$location', function(x2js, $scope, $http, sharedProperties,$location) {
+.controller('ifCountViewCtrl', ['x2js', '$scope', '$http', 'sharedProperties','$location', function(x2js, $scope, $http, sharedProperties,$location) {
     $scope.graphShow = false;
     var responseData;
     if(sharedProperties.getUrl() != '') {
         var req = {
             method: 'GET',
-            url: sharedProperties.getApiUrl() + '/api/analyse/codeDebt?repoUrl='+sharedProperties.getUrl(),
+            url: sharedProperties.getApiUrl() + '/api/analyse/ifCount?repoUrl='+sharedProperties.getUrl(),
             headers: {
                 'Content-Type': 'application/xml',
                 'Accept': 'application/xml'
@@ -41,7 +41,7 @@ angular.module('myApp.todoView', ['ngRoute', 'xml'])
         $scope.data = []
         $scope.labels = [-90, -80, -70, -60, -50, -40, -30, -20, -10, 0];
         for(var i = responseData.versions.version.length - 1; i >=0; i--) {
-            $scope.data.push(responseData.versions.version[i].todo);
+            $scope.data.push(responseData.versions.version[i].if);
         }
         $scope.options = {
             scales: {

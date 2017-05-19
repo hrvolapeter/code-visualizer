@@ -25,12 +25,10 @@ angular.module('myApp.rowCountView', ['ngRoute', 'xml'])
         console.log(req);
         $http(req).then(function succ(response) {
             responseData = x2js.xml_str2json(response.data);
-            console.log(response);
             fillChart();
         }, function err(response) {
             console.log(response);
         });
-        console.log("function ended");
     } else {
         $location.path("/");
     }

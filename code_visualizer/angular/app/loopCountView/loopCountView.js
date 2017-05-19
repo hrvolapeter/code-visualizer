@@ -1,21 +1,21 @@
 'use strict';
 
-angular.module('myApp.importsView', ['ngRoute', 'xml'])
+angular.module('myApp.loopCountView', ['ngRoute', 'xml'])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/importsView', {
-    templateUrl: 'importsView/importsView.html',
-    controller: 'importsViewCtrl'
+  $routeProvider.when('/loopCountView', {
+    templateUrl: 'loopCountView/loopCountView.html',
+    controller: 'loopCountViewCtrl'
   });
 }])
 
-.controller('importsViewCtrl', ['x2js', '$scope', '$http', 'sharedProperties','$location','$compile', function(x2js, $scope, $http, sharedProperties,$location, $compile) {
+.controller('loopCountViewCtrl', ['x2js', '$scope', '$http', 'sharedProperties','$location', function(x2js, $scope, $http, sharedProperties,$location) {
     $scope.graphShow = false;
     var responseData;
     if(sharedProperties.getUrl() != '') {
         var req = {
             method: 'GET',
-            url: sharedProperties.getApiUrl() + '/api/analyse/imports?repoUrl=' + sharedProperties.getUrl(),
+            url: sharedProperties.getApiUrl() + '/api/analyse/loopsCount?repoUrl='+sharedProperties.getUrl(),
             headers: {
                 'Content-Type': 'application/xml',
                 'Accept': 'application/xml'
@@ -25,17 +25,17 @@ angular.module('myApp.importsView', ['ngRoute', 'xml'])
         console.log(req);
         $http(req).then(function succ(response) {
             responseData = x2js.xml_str2json(response.data);
-            console.log(response);
             fillChart();
         }, function err(response) {
             console.log(response);
+            alert("Error loading data.");
+            $location.path("/");
         });
-        console.log("function ended");
     } else {
         $location.path("/");
     }
 
-    var ls = [];
+     var ls = [];
     var ds = [];
 
     var fillChart = function() {
@@ -45,9 +45,9 @@ angular.module('myApp.importsView', ['ngRoute', 'xml'])
         for (var i = 0; i < responseData.versions.version.length; i++) { 
             var lss = [];
             var dss = [];
-            for(var j = 0; j < responseData.versions.version[i].import.length; j++) {
-                lss.push(responseData.versions.version[i].import[j]._name);
-                dss.push(responseData.versions.version[i].import[j].__text);
+            for(var j = 0; j < responseData.versions.version[i].loop.length; j++) {
+                lss.push(responseData.versions.version[i].loop[j]._type);
+                dss.push(responseData.versions.version[i].loop[j].__text);
             }
             ls.push(lss);
             ds.push(dss);
@@ -69,8 +69,5 @@ angular.module('myApp.importsView', ['ngRoute', 'xml'])
         $scope.labels = ls[value];
         $scope.data = ds[value];
     }
-
-    
-
 
 }]);
