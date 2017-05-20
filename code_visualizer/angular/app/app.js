@@ -9,7 +9,9 @@ angular.module('myApp', [
   'myApp.rowCountView',
   'myApp.funcCountView',
   'myApp.importsView',
-  'myApp.view2',
+  'myApp.paramsView',
+  'myApp.loopCountView',
+  'myApp.ifCountView',
   'myApp.version'
 ])
 .service('sharedProperties', function () {
