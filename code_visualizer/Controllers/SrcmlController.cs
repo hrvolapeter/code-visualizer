@@ -15,6 +15,7 @@ namespace code_visualizer
 
 	public static class SrcmlController
 	{
+
 		private static OS_T DetectOS()
 		{
 			OperatingSystem os = Environment.OSVersion;
@@ -35,7 +36,11 @@ namespace code_visualizer
 			}
 		}
 
-
+		/// <summary>
+		/// Parse source using right srcml binary
+		/// </summary>
+		/// <param name="path">string with path to repo</param>
+		/// <returns>path to xml file</returns>
 		public static string ParseSources(string path)
 		{
 			var ostype = DetectOS();
@@ -43,10 +48,10 @@ namespace code_visualizer
 			switch (ostype)
 			{
 				case OS_T.Unix:
-					processInfo.FileName = AppDomain.CurrentDomain.BaseDirectory + "libs" + Path.DirectorySeparatorChar + "osxsrcml";
+					processInfo.FileName = AppDomain.CurrentDomain.BaseDirectory + "libs" + Path.DirectorySeparatorChar + "unixsrcml";
 					break;
 				case OS_T.OSX:
-					processInfo.FileName = AppDomain.CurrentDomain.BaseDirectory + "libs" + Path.DirectorySeparatorChar + "unixsrcml";
+					processInfo.FileName = AppDomain.CurrentDomain.BaseDirectory + "libs" + Path.DirectorySeparatorChar + "osxsrcml";
 					break;
 				case OS_T.Win:
 					processInfo.FileName = AppDomain.CurrentDomain.BaseDirectory + "libs" + Path.DirectorySeparatorChar + "winsrcml.exe";
