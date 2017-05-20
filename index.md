@@ -18,6 +18,22 @@ Features:
   - analyse/returnTypes
    count number and type of returns
 
+# Team members Reviews
+
+- [Peter Hrvola](https://retep007.github.io/code-visualizer/ph.html)
+
+# Used packages excluding standard library
+All can be easlly installed using nuget in ide. Either visual studio or mono develop.
+- Web.Http.Cors
+- srcML
+- gitlib2sharp
+
+# Running
+App requires web server either IIS which is kind of trublesome or XSP (unix) or apache with mod_mono installed.
+
+# Download built files
+It's always better idea to compile project on your own as the ide will resolve missing dependencies (old .NET framework) anyway [link](https://retep007.github.io/code-visualizer/bin.zip)
+
 # Documentation
 This is documentation of public accesible api. Every api request requires repoUrl, if repository is large it might take a while to get response from a server. XML format is valid under microsoft xml standard. Api also support application/json type.
 

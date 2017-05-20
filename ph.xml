@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+	<section>
+	<title>Final Rating - Peter Hrvola</title>
+	<simplelist>
+		<member>We picked up srcml for converting code in repository to xml.</member>
+		<member>Github because of my previous knowledge of github </member>
+		<member>C# as most of us had previous experience with this language</member>
+	</simplelist>
+	</section>	
+	<section>
+	<title>What I did</title>
+	<simplelist>
+		<member>Setting up development stack</member>
+		<member>Connecting all components of our app. Backend project with frontend, backned with external binaries for parsing</member>
+		<member>Creating and updating project web page</member>
+		<member>Git magician</member>
+	</simplelist>
+	</section>
+	<section>
+	<title>Problems</title>
+	<para>
+		The initial stack setting was a little bit harder then i thought. It was partly because of we were targeting C# mono (multiplatform version) and using asp.net framework. Some nuget packages didn't work properly at first, but github community was very helpful in this and helped me to solve issues with using packages with asp.net, problem was that binaries weren't copied to output folder.
+	</para>
+  <para>
+    As for the frontend I choose angualr as I have previous experience with it. Anyway this wasn't also without issues. As I have NEVER seen to use xml on javascrip web app. And there were like 1 library for angular that can handle parsing xml in a very obscure way. First version was sending initialization xml post request. It was not a best decision though, at later point we decided to send repoUrl with every request in url encoded format. Problem was cloning large repository can take up to 5 minutes and there could be issues with processing request while repository was still being cloned.
+  </para>
+  <para>
+    Next issue came with setting up project web page. As I wanted it to look nice, I decided to use github pages with their supported templates. There wasn't any example how to make it work, just that they support it.
+  </para>
+  <para>
+    Correct OS detection was also a problem. Latest mono environment can't distinguish unix and mac os properly. There one hack thats working, mac os creates in every directory .DS_store file for wich we can look for.
+  </para>
+  <para>
+    We have one unressolved issue though. Our project doesn't run in latest visual studio on windows and nobody knows why. As the project was created in visual studio on mac os. It should be perfectly compatible. We have spent a couple of hours on this issue. It seems that it's rather issue with newest IIS web server. Unix systems use XSP web server which runs smoothly.
+  </para>
+	</section>
+  <section>
+    <title>Summary</title>
+    <para>
+      This project was a fun. I learned a lot about C# cross platform development. Making multiple parts of project to cooperate. Creating abandoned branches. Restoring branches from git reflog. Although if I was supposed to make this project again I would probably think about using C# as with this decision came a lot of unncesesary problems. Maybe using pure C# without asp.net and only with .NET core framework would make things easier. But I see big truble in IIS, it's pure evil technology, from my point of view it seems nobody know how it works and people do just some random stuff to make it work for a while. I was really disapointed about support of microsoft own technologies on their own platforms. Runing it on unix was a lot easier. Apart from installing Mono studio it took only about 10 minutes.
+    </para>
+    <para>
+      Team projects are hard, because multiple people have to cooperate. They have to agree on a solution, not everyone is always available. And some people might spend quite a while waiting for others to finish theirs jobs.
+    </para>
+    <para>
+      Using xml in javascript projects is hard. Web servers and applications should always support application/json and application/xml types. Default C# api can do this at no cost, but we had to sacrifice json support in order to have nice formated xml output and it would take long time to nice format both formats.
+    </para>
+  </section>
+</article>
