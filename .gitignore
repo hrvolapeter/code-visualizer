@@ -40,3 +40,5 @@ Thumbs.db
 *.dotCover
 
 bower_components/
+node_modules/
+bin/

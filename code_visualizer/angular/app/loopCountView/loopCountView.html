@@ -1,0 +1,22 @@
+<div class="graph">
+<div class="loadingGraph" ng-hide="loadingHide">
+    </div>
+<div id="graphContainer" class="ng-cloak" ng-show="graphShow">
+        
+        <canvas id="doughnut" class="chart chart-doughnut" chart-data="data" chart-labels="labels" chart-options="options" chart-dataset-override="datasets" chart-colors="colors">
+        
+        </canvas>
+        <div id="selectMenu"> 
+          <button ng-click="updateChart(0);">-90</button>
+          <button ng-click="updateChart(1);">-80</button>
+          <button ng-click="updateChart(2);">-70</button>
+          <button ng-click="updateChart(3);">-60</button>
+          <button ng-click="updateChart(4);">-50</button>
+          <button ng-click="updateChart(5);">-40</button>
+          <button ng-click="updateChart(6);">-30</button>
+          <button ng-click="updateChart(7);">-20</button>
+          <button ng-click="updateChart(8);">-10</button>
+          <button ng-click="updateChart(9);">0</button>
+        </div>
+    </div>
+</div>
