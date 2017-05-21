@@ -1,50 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <article xmlns="http://docbook.org/ns/docbook" version="5.0">
 	<section>
-	<title>Final Rating - Peter Hrvola</title>
-	<simplelist>
-		<member>We picked up srcml for converting code in repository to xml.</member>
-		<member>Github because of my previous knowledge of github </member>
-		<member>C# as most of us had previous experience with this language</member>
-	</simplelist>
+    <title>Final Rating - Pavel Jezek</title>
+    <simplelist>
+      <member>We picked up srcml for converting code in repository to xml.</member>
+      <member>Github because of my previous knowledge of github </member>
+      <member>C# as most of us had previous experience with this language</member>
+    </simplelist>
 	</section>	
 	<section>
-	<title>What I did</title>
-	<simplelist>
-		<member>Setting up development stack</member>
-		<member>Connecting all components of our app. Backend project with frontend, backned with external binaries for parsing</member>
-		<member>Creating and updating project web page</member>
-		<member>Git magician</member>
-	</simplelist>
+    <title>What I did</title>
+    <simplelist>
+      <member>Developmnet of frontend</member>
+      <member>Debugging api</member>
+    </simplelist>
 	</section>
 	<section>
-	<title>Problems</title>
-	<para>
-		The initial stack setting was a little bit harder then i thought. It was partly because of we were targeting C# mono (multiplatform version) and using asp.net framework. Some nuget packages didn't work properly at first, but github community was very helpful in this and helped me to solve issues with using packages with asp.net, problem was that binaries weren't copied to output folder.
-	</para>
-  <para>
-    As for the frontend I choose angualr as I have previous experience with it. Anyway this wasn't also without issues. As I have NEVER seen to use xml on javascrip web app. And there were like 1 library for angular that can handle parsing xml in a very obscure way. First version was sending initialization xml post request. It was not a best decision though, at later point we decided to send repoUrl with every request in url encoded format. Problem was cloning large repository can take up to 5 minutes and there could be issues with processing request while repository was still being cloned.
-  </para>
-  <para>
-    Next issue came with setting up project web page. As I wanted it to look nice, I decided to use github pages with their supported templates. There wasn't any example how to make it work, just that they support it.
-  </para>
-  <para>
-    Correct OS detection was also a problem. Latest mono environment can't distinguish unix and mac os properly. There one hack thats working, mac os creates in every directory .DS_store file for wich we can look for.
-  </para>
-  <para>
-    We have one unressolved issue though. Our project doesn't run in latest visual studio on windows and nobody knows why. As the project was created in visual studio on mac os. It should be perfectly compatible. We have spent a couple of hours on this issue. It seems that it's rather issue with newest IIS web server. Unix systems use XSP web server which runs smoothly.
-  </para>
+    <title>Problems</title>
+    <para>
+      We chose Angular for our frontend development. As I was quite new to the whole idea of Angular I had to learn the basics before I started writing a code. One of the first issues I came across was hidding elements in index.html which isn't part of any view. This was solved by creating a controller that would handle elements outside particular views.
+    </para>
+    <para>
+      Few other things I had to learn were sharing variables between views, creating http requests, handling xml in javascript.
+    </para>
+    <para>
+      Since there is no native support for XML in javascript we had to find a library that would do so. We chose x2js. It is used to parse recieved xml data into a json object which can be handled more easily in javascript. This library doesn't create an ideal looking json object thought and reading data from it is a bit obscure.
+    </para>
+    <para>
+      For visualising data returned from our API I chose to use charts. As I didn't want to waste time creating my own chart component I decided to look for suitable one online. I settled of angular-char.js based on Chart.js which was easy to use and sufficient for out purposes. I then decided to use line charts and doughnut charts based on the data I recieved.
+    </para>
+    <para>
+      As I wanted the frontend not only to be functional, but also look pretty I decided to go with some simple animations and styling. I used a simple web tool coloors.co to help me choose a good combination of colours and then simple CSS3 stylings to create loading circle animation for when there is nothing to be shown in the chart yet and few other grapical features. I combined this with hidding elements from within the Angular itself.
+    </para>
+    <para>
+      Lastly I wanted to try and make our app run on Microsofts Azure cloud service. This should be a simple process but as we used Mono instead of .NET itself this appeared to be a difficult thing to do. It seems there is a problem with running Mono apps on latest IIS since we couldn't get our app running even in latest Visual Studio. After hours of addressing this issue we decided to lay it aside as it seems there is no solution for this issue at the moment.
+    </para>
 	</section>
   <section>
     <title>Summary</title>
     <para>
-      This project was a fun. I learned a lot about C# cross platform development. Making multiple parts of project to cooperate. Creating abandoned branches. Restoring branches from git reflog. Although if I was supposed to make this project again I would probably think about using C# as with this decision came a lot of unncesesary problems. Maybe using pure C# without asp.net and only with .NET core framework would make things easier. But I see big truble in IIS, it's pure evil technology, from my point of view it seems nobody know how it works and people do just some random stuff to make it work for a while. I was really disapointed about support of microsoft own technologies on their own platforms. Runing it on unix was a lot easier. Apart from installing Mono studio it took only about 10 minutes.
+      In this project I learned a lot about git and cooperation. As I have never used github in a bigger project and with more people then myself it was a bit difficult for me to get oriented in the process but it helped me a lot and now I understand all the different functions of git. Cooperation with other team members was very inspiring since we all brought a lot of good ideas.
     </para>
     <para>
-      Team projects are hard, because multiple people have to cooperate. They have to agree on a solution, not everyone is always available. And some people might spend quite a while waiting for others to finish theirs jobs.
-    </para>
-    <para>
-      Using xml in javascript projects is hard. Web servers and applications should always support application/json and application/xml types. Default C# api can do this at no cost, but we had to sacrifice json support in order to have nice formated xml output and it would take long time to nice format both formats.
+      Learning Angular was fun and I found it to be very exciting way of creating web pages and applications. Integrating XML was interesting since I have previously only used JSON in similar projects.
     </para>
   </section>
 </article>
