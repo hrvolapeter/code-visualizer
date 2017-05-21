@@ -27,6 +27,7 @@ All can be easlly installed using nuget in ide. Either visual studio or mono dev
 - Web.Http.Cors
 - srcML
 - gitlib2sharp
+- git
 
 # Running
 App requires web server either IIS which is kind of trublesome or XSP (unix) or apache with mod_mono installed.
