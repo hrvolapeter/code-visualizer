@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 
 namespace code_visualizer
@@ -20,8 +21,12 @@ namespace code_visualizer
                 return folderPath;
             }
             ClearFolder(folderPath);
-
-            LibGit2Sharp.Repository.Clone(repoUrl, folderPath);
+           			
+			ProcessStartInfo processInfo = new ProcessStartInfo();
+			processInfo.FileName = "git";
+            processInfo.Arguments = "clone " + repoUrl + " " + folderPath;
+			Process proc = Process.Start(processInfo);
+			proc.WaitForExit();
             return folderPath;
         }
 

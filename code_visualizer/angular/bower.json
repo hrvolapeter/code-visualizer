@@ -11,6 +11,8 @@
     "angular-loader": "~1.5.0",
     "angular-mocks": "~1.5.0",
     "html5-boilerplate": "^5.3.0",
-    "angular-xml": "^2.2.2"
+    "angular-xml": "^2.2.2",
+    "chart.js": "^2.5.0",
+    "angular-chart.js": "^1.1.1"
   }
 }
