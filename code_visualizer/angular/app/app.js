@@ -16,7 +16,7 @@ angular.module('myApp', [
 ])
 .service('sharedProperties', function () {
         var url = '';
-        var apiUrl = 'http://25.22.141.161:8080';
+        var apiUrl = 'http://127.0.0.1:8080';
 
         return {
             getUrl: function () {
