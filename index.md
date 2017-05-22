@@ -21,6 +21,7 @@ Features:
 # Team members Reviews
 
 - [Peter Hrvola](https://retep007.github.io/code-visualizer/ph.html)
+- [Pavel Jezek](https://retep007.github.io/code-visualizer/pj.html)
 
 # Used packages excluding standard library
 All can be easlly installed using nuget in ide. Either visual studio or mono develop.
