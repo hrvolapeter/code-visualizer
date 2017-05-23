@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+
+
+    <!-- simple types -->
+    <xs:simpleType name="nonEmptyString">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="loopsEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="for"/>
+            <xs:enumeration value="foreach"/>
+            <xs:enumeration value="while"/>
+            <xs:enumeration value="do"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <!-- groups -->
+    <xs:group name="toDo">
+        <xs:sequence>
+            <xs:element name="todo" type="xs:nonNegativeInteger"/>
+        </xs:sequence>
+    </xs:group>
+
+    <xs:group name="rowCount">
+        <xs:sequence>
+            <xs:element name="rows" type="xs:nonNegativeInteger"/>
+        </xs:sequence>
+    </xs:group>
+
+    <xs:group name="funcCount">
+        <xs:sequence>
+            <xs:element name="function" type="xs:nonNegativeInteger"/>
+        </xs:sequence>
+    </xs:group>
+
+    <xs:group name="ifs">
+        <xs:sequence>
+            <xs:element name="if" type="xs:nonNegativeInteger"/>
+        </xs:sequence>
+    </xs:group>
+
+    <xs:group name="avgRowsPerFunction">
+        <xs:sequence>
+            <xs:element name="rowsperfunction" type="xs:nonNegativeInteger"/>
+        </xs:sequence>
+    </xs:group>
+
+    <xs:group name="paramTypesCount">
+        <xs:sequence>
+            <xs:element name="arguments" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:positiveInteger">
+                            <xs:attribute name="type" type="nonEmptyString" use="required"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:group>
+
+    <xs:group name="imports">
+        <xs:sequence>
+            <xs:element name="import" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:positiveInteger">
+                            <xs:attribute name="name" type="nonEmptyString" use="required"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:group>
+
+    <xs:group name="loops">
+        <xs:sequence>
+            <xs:element name="loop" minOccurs="4" maxOccurs="4">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:nonNegativeInteger">
+                            <xs:attribute name="type" type="loopsEnum" use="required"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:group>
+
+    <xs:group name="returnTypesCount">
+        <xs:sequence>
+            <xs:element name="return" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:positiveInteger">
+                            <xs:attribute name="type" type="nonEmptyString" use="required"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:group>
+
+
+    <!-- root -->
+    <xs:element name="versions">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="version" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:choice>
+                            <xs:group ref="toDo"/>
+                            <xs:group ref="rowCount"/>
+                            <xs:group ref="funcCount"/>
+                            <xs:group ref="paramTypesCount"/>
+                            <xs:group ref="imports"/>
+                            <xs:group ref="avgRowsPerFunction"/>
+                            <xs:group ref="loops"/>
+                            <xs:group ref="ifs"/>
+                            <xs:group ref="returnTypesCount"/>
+                        </xs:choice>
+                    </xs:complexType>
+                    <xs:unique name="UniqueRetType">
+                        <xs:selector xpath="return"/>
+                        <xs:field xpath="@type"/>
+                    </xs:unique>
+                    <xs:unique name="UniqueLoopType">
+                        <xs:selector xpath="loop"/>
+                        <xs:field xpath="@type"/>
+                    </xs:unique>
+                    <xs:unique name="UniqueImportName">
+                        <xs:selector xpath="import"/>
+                        <xs:field xpath="@name"/>
+                    </xs:unique>
+                    <xs:unique name="UniqueArgType">
+                        <xs:selector xpath="arguments"/>
+                        <xs:field xpath="@type"/>
+                    </xs:unique>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
