@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Project review</title><meta name="generator" content="DocBook XSL Stylesheets V1.79.1"/>
+  </head>
+
+<body>
+ <div class="article">
+  <div class="section">
+  <div class="titlepage"><div><div>
+   <h1 class="title" style="clear: both">Project review</h1>
+   <h2 class="title" style="clear: both">by Mária Michalíková</h2>
+  </div></div></div>
+  <p>This is a review of the school project that our group of four students was working on. Our assignment was to create an application that can visualize historical data from Software Repositories (like Git) by using srcML, tool that can represent source code in XML format.</p>
+ </div>
+ <div class="section">
+  <div class="titlepage"><div><div>
+   <h3 class="title" style="clear: both">My job in the project</h3></div></div></div>
+   <table border="0" summary="Simple list" class="simplelist">
+    <tr><td>Implement some functions for code analyses</td></tr>
+    <tr><td>Change format of endpoint XML output</td></tr>
+   </table></div>
+ <div class="section">
+  <div class="titlepage"><div><div>
+   <h3 class="title" style="clear: both">Process</h3></div></div></div>
+  <p>First thing to do was to implement some functions for code analyses. I decide to create functions that will count number of if statements in the code, number of occurences of loops (for, while, do, foreach), get average number of rows per function (for which I used already implemented function by one of my collegues) and count occurences of different types that were returned from functions in the code. All of these functions weren't hard to implement, I just had to take a close look at srcML structure, because I wasn't familiar with it. Then I created complementary Web API functions so that the implemented analyse functions can be used in our application.
+  </p>
+  <p>My second job was to change format of XML output. The original version wasn't providing an easy survey and wasn't looking very good. We wanted our output to be more self-explanatory and much more easier to read and understand. At first, I didn't know how to achieved that, but after some research I create a new generic class that contains the array of results of our analyse functions and type of analyses (for example number of ifs, number of loops etc.). Then I wrote my own xml formatter for this class where I used the type of analyses as an element name. This formatter contains two functions for formatting - according to type of received data.
+  </p>
+  <p>Implementation part wasn't particularly hard, but I definitely had to do some research since a lot of the things were new to me. I was very happy that our group chose C# language cause that is my prefered language for working with XML. The only major problem that I had during working on this project was to run the solution. It didn't work in Visual Studio (Windows), so I tried to run it on Linux, but I had a problem with unrestored packages and it took me quite some time to solve this problem.
+  </p></div>
+ <div class="section">
+  <div class="titlepage"><div><div>
+   <h3 class="title" style="clear: both">Summary</h3></div></div></div>
+   <p>I really enjoy working on this project. It was my first group project and I think it turned out very good. All of the members participating in this project were working really hard and there were no problems in our communication. Even though I still prefer working on my own, because you can manage your time better and don't have to be dependent on others, it was a valuable experience.
+   </p>
+   <p>I'm glad that I was able to learn some new things like working with Web API, srcML and implementing XML formatter and I'm pretty sure that I will use these skills in the future. Our assignment was very interesting and I like that we could get quite creative with it. Over all, I think this project was a great and fun experience and I'm really happy with its result.
+   </p></div>
+ </div>
+</body>
+</html>
